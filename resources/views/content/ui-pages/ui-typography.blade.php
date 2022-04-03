@@ -358,7 +358,7 @@
       <div class="card-body">
         <p class="card-text">
           Add a <code class="highlighter-rouge">.border-{left/right}-{color} .border-{left/right}-3</code> helper
-          classes, where color can be any color from Vuexy Admin color palette.
+          classes, where color can be any color from Ecosent Admin color palette.
         </p>
         <blockquote class="blockquote pl-1 border-left-primary border-left-3">
           <p class="mb-0">
@@ -560,7 +560,7 @@
         </div>
         <div class="card-body">
           <p class="card-text">
-            list of terms with icons, use <code>.list-style-icons</code> class. You can use any icon from Vuexy Admin
+            list of terms with icons, use <code>.list-style-icons</code> class. You can use any icon from Ecosent Admin
             icon types.
           </p>
           <ul class="list-style-icons">

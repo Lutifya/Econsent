@@ -69,7 +69,7 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+          <h2 class="brand-text text-primary ml-1">Ecosent</h2>
         </a>
 
         <h4 class="card-title mb-1">Adventure starts here 🚀</h4>

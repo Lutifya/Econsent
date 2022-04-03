@@ -10,7 +10,7 @@
       <div class="alert-body">
         <strong>Info:</strong> This layout is used in Authentication & Miscellaneous page. Please check the&nbsp;<a
           class="text-primary"
-          href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-blank"
+          href="https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-blank"
           target="_blank"
           >Layout blank documentation</a
         >&nbsp; for more details.

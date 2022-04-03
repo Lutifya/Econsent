@@ -2,25 +2,13 @@
   "menu": [
     {
       "name": "Dashboards",
-      "badge": "2",
+
       "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
       "icon": "home",
       "slug": "",
-      "submenu": [
-        {
-          "url": "dashboard/analytics",
-          "name": "Analytics",
-          "icon": "circle",
-          "slug": "dashboard-analytics"
-        },
-        {
-          "url": "/",
-          "name": "eCommerce",
-          "icon": "circle",
-          "slug": "dashboard-ecommerce"
-        }
-      ]
+      "url": "/"
     },
+
 
     {
       "navheader": "Apps & Pages",
@@ -257,37 +245,37 @@
             {
               "name": "Welcome",
               "slug": "mail-welcome",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-welcome.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-welcome.html",
               "newTab": true
             },
             {
               "name": "Reset Password",
               "slug": "mail-forgot",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-reset-password.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-reset-password.html",
               "newTab": true
             },
             {
               "name": "Verify Email",
               "slug": "mail-verify",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-verify-email.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-verify-email.html",
               "newTab": true
             },
             {
               "name": "Deactivate Account",
               "slug": "mail-deactivate",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-deactivate-account.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-deactivate-account.html",
               "newTab": true
             },
             {
               "name": "Invoice",
               "slug": "mail-invoice",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-invoice.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-invoice.html",
               "newTab": true
             },
             {
               "name": "Promotional",
               "slug": "mail-promotional",
-              "url": "https://pixinvent.com/demo/vuexy-mail-template/mail-promotional.html",
+              "url": "https://pixinvent.com/demo/Ecosent-mail-template/mail-promotional.html",
               "newTab": true
             }
           ]
@@ -861,7 +849,7 @@
       "slug": "menu-disabled"
     },
     {
-      "url": "https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-laravel-folder-structure.html",
+      "url": "https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-laravel-folder-structure.html",
       "name": "Documentation",
       "icon": "folder",
       "slug": "documentation",

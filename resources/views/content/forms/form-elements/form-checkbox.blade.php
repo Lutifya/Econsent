@@ -90,7 +90,7 @@
 <!-- Custom Checkbox end -->
 
 <!-- Checkbox Color start -->
-<section class="vuexy-checkbox-color">
+<section class="Ecosent-checkbox-color">
   <div class="row">
     <div class="col-12">
       <div class="card">

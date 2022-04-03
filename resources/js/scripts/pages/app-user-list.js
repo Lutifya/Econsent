@@ -2,7 +2,7 @@
     File Name: app-user-list.js
     Description: User List page
     --------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 
@@ -31,7 +31,9 @@ $(function () {
   // Users List datatable
   if (dtUserTable.length) {
     dtUserTable.DataTable({
-      ajax: assetPath + 'data/user-list.json', // JSON file to add data
+      ajax: assetPath + 'user/getAllUsers',
+      serverSide: true,
+      // ajax: assetPath + 'data/user-list.json', // JSON file to add data
       columns: [
         // columns according to JSON
         { data: 'responsive_id' },
@@ -107,7 +109,9 @@ $(function () {
               Author: feather.icons['settings'].toSvg({ class: 'font-medium-3 text-warning mr-50' }),
               Maintainer: feather.icons['database'].toSvg({ class: 'font-medium-3 text-success mr-50' }),
               Editor: feather.icons['edit-2'].toSvg({ class: 'font-medium-3 text-info mr-50' }),
-              Admin: feather.icons['slack'].toSvg({ class: 'font-medium-3 text-danger mr-50' })
+              Admin: feather.icons['slack'].toSvg({ class: 'font-medium-3 text-danger mr-50' }),
+              admin: feather.icons['slack'].toSvg({ class: 'font-medium-3 text-danger mr-50' }),
+              user: feather.icons['user'].toSvg({ class: 'font-medium-3 text-primary mr-50' }),
             };
             return "<span class='text-truncate align-middle'>" + roleBadgeObj[$role] + $role + '</span>';
           }
@@ -169,14 +173,14 @@ $(function () {
         '<"col-sm-12 col-md-6"p>' +
         '>',
       language: {
-        sLengthMenu: 'Show _MENU_',
+        sLengthMenu: 'Mostra _MENU_',
         search: 'Search',
         searchPlaceholder: 'Search..'
       },
       // Buttons with Dropdown
       buttons: [
         {
-          text: 'Add New User',
+          text: 'Aggiungi nuovo utente',
           className: 'add-new btn btn-primary mt-50',
           attr: {
             'data-toggle': 'modal',
@@ -226,7 +230,7 @@ $(function () {
           .every(function () {
             var column = this;
             var select = $(
-              '<select id="UserRole" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Select Role </option></select>'
+              '<select id="UserRole" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Seleziona Ruolo </option></select>'
             )
               .appendTo('.user_role')
               .on('change', function () {
@@ -248,7 +252,7 @@ $(function () {
           .every(function () {
             var column = this;
             var select = $(
-              '<select id="UserPlan" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>'
+              '<select id="UserPlan" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Seleziona Sito </option></select>'
             )
               .appendTo('.user_plan')
               .on('change', function () {
@@ -270,7 +274,7 @@ $(function () {
           .every(function () {
             var column = this;
             var select = $(
-              '<select id="FilterTransaction" class="form-control text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>'
+              '<select id="FilterTransaction" class="form-control text-capitalize mb-md-0 mb-2xx"><option value=""> Seleziona Stato </option></select>'
             )
               .appendTo('.user_status')
               .on('change', function () {

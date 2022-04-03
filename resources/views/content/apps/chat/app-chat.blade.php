@@ -119,7 +119,7 @@
               <p>Absolutely!</p>
             </div>
             <div class="chat-content">
-              <p>Vuexy admin is the responsive bootstrap 4 admin template.</p>
+              <p>Ecosent admin is the responsive bootstrap 4 admin template.</p>
             </div>
           </div>
         </div>

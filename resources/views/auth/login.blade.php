@@ -37,10 +37,10 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+          <h2 class="brand-text text-primary ml-1">Ecosent</h2>
         </a>
 
-{{--        <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>--}}
+{{--        <h4 class="card-title mb-1">Welcome to Ecosent! 👋</h4>--}}
 
         <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
           @csrf

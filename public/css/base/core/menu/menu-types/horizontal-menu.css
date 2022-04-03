@@ -4,7 +4,7 @@
 	It support light & dark version, flipped layout, right side icons, borders menu for
 	item separation.
 	----------------------------------------------------------------------------------------
-	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard TemplateTheme
+	Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard TemplateTheme
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -69,7 +69,7 @@
   max-width: 36px;
 }
 .horizontal-menu .header-navbar.navbar-brand-center .navbar-header .navbar-brand .brand-text {
-  color: #7367f0;
+  color: #2ca714;
   padding-left: 1rem;
   margin-bottom: 0;
   font-weight: 600;
@@ -151,7 +151,7 @@
 }
 .horizontal-menu .header-navbar.navbar-horizontal ul#main-menu-navigation > li > .dropdown-menu .active > a {
   background: #f8f8f8;
-  color: #7367f0;
+  color: #2ca714;
   font-weight: 500;
 }
 .horizontal-menu .header-navbar.navbar-horizontal ul#main-menu-navigation > li > .dropdown-menu .open.active > a {
@@ -175,10 +175,10 @@
   border-radius: 4px;
 }
 .horizontal-menu .header-navbar.navbar-horizontal ul#main-menu-navigation > li.active > a {
-    background: linear-gradient(118deg, #2ca714, rgb(54 181 29 / 70%));
-    box-shadow: 0 0 10px 1px rgb(44 139 25);
-    border-radius: 4px;
-    z-index: 1;
+  background: linear-gradient(118deg, #2ca714, rgba(44, 167, 20, 0.7));
+  box-shadow: 0px 0px 6px 1px rgba(44, 167, 20, 0.6);
+  color: #fff;
+  border-radius: 4px;
 }
 .horizontal-menu .navigation-header {
   font-family: inherit;
@@ -188,7 +188,7 @@
   text-transform: uppercase;
 }
 .horizontal-menu .navbar-dark .nav-item.active > a {
-  border-bottom: 2px solid #7367f0;
+  border-bottom: 2px solid #2ca714;
   background-color: #313c50;
 }
 
@@ -464,7 +464,7 @@
     light & dark version, filpped layout, right side icons, native scroll and borders menu
     item seperation.
     ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

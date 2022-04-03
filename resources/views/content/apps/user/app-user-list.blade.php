@@ -20,7 +20,7 @@
 <section class="app-user-list">
   <!-- users filter start -->
   <div class="card">
-    <h5 class="card-header">Search Filter</h5>
+    <h5 class="card-header">Ricerca per Filtri</h5>
     <div class="d-flex justify-content-between align-items-center mx-50 row pt-0 pb-2">
       <div class="col-md-4 user_role"></div>
       <div class="col-md-4 user_plan"></div>
@@ -37,8 +37,8 @@
             <th></th>
             <th>User</th>
             <th>Email</th>
-            <th>Role</th>
-            <th>Plan</th>
+            <th>Ruolo</th>
+            <th>Sito</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -51,7 +51,7 @@
         <form class="add-new-user modal-content pt-0">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
           <div class="modal-header mb-1">
-            <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Nuovo Utente</h5>
           </div>
           <div class="modal-body flex-grow-1">
             <div class="form-group">
@@ -92,22 +92,21 @@
               <small class="form-text text-muted"> You can use letters, numbers & periods </small>
             </div>
             <div class="form-group">
-              <label class="form-label" for="user-role">User Role</label>
+              <label class="form-label" for="user-role">Ruolo Utente</label>
               <select id="user-role" class="form-control">
-                <option value="subscriber">Subscriber</option>
-                <option value="editor">Editor</option>
-                <option value="maintainer">Maintainer</option>
-                <option value="author">Author</option>
+                <option value="subscriber">User</option>
+{{--                <option value="editor">Editor</option>--}}
+{{--                <option value="maintainer">Maintainer</option>--}}
+{{--                <option value="author">Author</option>--}}
                 <option value="admin">Admin</option>
               </select>
             </div>
             <div class="form-group mb-2">
-              <label class="form-label" for="user-plan">Select Plan</label>
+              <label class="form-label" for="user-plan">Seleziona Sito</label>
               <select id="user-plan" class="form-control">
-                <option value="basic">Basic</option>
-                <option value="enterprise">Enterprise</option>
-                <option value="company">Company</option>
-                <option value="team">Team</option>
+                @foreach($siti as $sito)
+                  <option value="basic">{{$sito->Nome_sito}}</option>
+                @endforeach
               </select>
             </div>
             <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>

@@ -1,11 +1,11 @@
 <?php
 return [
   'custom' => [
-    'mainLayoutType' => 'vertical', // Options[String]: vertical(default), horizontal
+    'mainLayoutType' => 'horizontal', // Options[String]: vertical(default), horizontal
     'theme' => 'light', // options[String]: 'light'(default), 'dark', 'bordered', 'semi-dark'
     'sidebarCollapsed' => false, // options[Boolean]: true, false(default) (warning:this option only applies to the vertical theme.)
     'navbarColor' => '', // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
-    'horizontalMenuType' => 'floating', // options[String]: floating(default) / static /sticky (Warning:this option only applies to the Horizontal theme.)
+    'horizontalMenuType' => 'static', // options[String]: floating(default) / static /sticky (Warning:this option only applies to the Horizontal theme.)
     'verticalMenuNavbarType' => 'floating', // options[String]: floating(default) / static / sticky / hidden (Warning:this option only applies to the vertical theme)
     'footerType' => 'static', // options[String]: static(default) / sticky / hidden
     'layoutWidth' => 'full', // options[String]: full(default) / boxed,
@@ -19,4 +19,4 @@ return [
   ]
 ];
 
-/* Do changes in this file if you know what it effects to your template. For more infomation refer the <a href="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template//documentation/documentation-laravel.html"> documentation </a> */
+/* Do changes in this file if you know what it effects to your template. For more infomation refer the <a href="https://pixinvent.com/demo/Ecosent-bootstrap-laravel-admin-template//documentation/documentation-laravel.html"> documentation </a> */

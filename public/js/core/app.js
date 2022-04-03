@@ -7,13 +7,13 @@ var __webpack_exports__ = {};
   File Name: app.js
   Description: Template related app JS.
   ----------------------------------------------------------------------------------------
-  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 window.colors = {
   solid: {
-    primary: '#7367F0',
+    primary: '#2ca714',
     secondary: '#82868b',
     success: '#28C76F',
     info: '#00cfe8',

@@ -21,7 +21,7 @@
       <div class="alert-body">
         <strong>Info:</strong> Please check the&nbsp;<a
           class="text-primary"
-          href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-without-menu"
+          href="https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-without-menu"
           target="_blank"
           >Layout without menu documentation</a
         >&nbsp; for more details.

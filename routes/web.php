@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
@@ -47,6 +48,13 @@ Route::group(['prefix' => 'dashboard'], function () {
 });
 /* Route Dashboards */
 
+
+Route::group((['prefix' => 'user']), function(){
+    Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
+    Route::get('list', [UserController::class,'user_list'])->name('app-user-list');
+    Route::get('view', [UserController::class,'user_view'])->name('app-user-view');
+    Route::get('edit', [UserController::class,'user_edit'])->name('app-user-edit');
+});
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {
   Route::get('email', [AppsController::class,'emailApp'])->name('app-email');

@@ -19,7 +19,7 @@
       <div class="alert-body">
         <strong>Info:</strong> Use this layout to set menu (navigation) default collapsed. Please check the&nbsp;<a
           class="text-primary"
-          href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-collapsed-menu"
+          href="https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-layouts.html#layout-collapsed-menu"
           target="_blank"
           >Layout collapsed menu documentation</a
         >&nbsp; for more details.

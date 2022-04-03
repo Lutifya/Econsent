@@ -110,8 +110,8 @@
 </section>
 <!-- Custom Radio Buttons end -->
 
-<!-- Vuexy Radio Buttons Color start -->
-<section class="vuexy-radio-color">
+<!-- Ecosent Radio Buttons Color start -->
+<section class="Ecosent-radio-color">
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -184,5 +184,5 @@
     </div>
   </div>
 </section>
-<!-- Vuexy Radio Buttons Color end -->
+<!-- Ecosent Radio Buttons Color end -->
 @endsection

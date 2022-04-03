@@ -65,7 +65,7 @@
             </g>
           </g>
         </svg>
-        <h3 class="text-primary font-weight-bold ml-1">Vuexy</h3>
+        <h3 class="text-primary font-weight-bold ml-1">Ecosent</h3>
       </div>
       <p class="mb-25">Office 149, 450 South Brand Brooklyn</p>
       <p class="mb-25">San Diego County, CA 91905, USA</p>
