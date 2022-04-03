@@ -37,11 +37,11 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+          <h2 class="brand-text text-primary ml-1">Ecosent</h2>
         </a>
 
-        <h4 class="card-title mb-1">Adventure starts here 🚀</h4>
-        <p class="card-text mb-2">Make your app management easy and fun!</p>
+{{--        <h4 class="card-title mb-1">Registrati</h4>--}}
+{{--        <p class="card-text mb-2">Make your app management easy and fun!</p>--}}
 
         <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
           @csrf
@@ -81,7 +81,7 @@
           </div>
 
           <div class="form-group">
-            <label for="register-password-confirm" class="form-label">Confirm Password</label>
+            <label for="register-password-confirm" class="form-label">Conferma Password</label>
 
             <div class="input-group input-group-merge form-password-toggle">
               <input type="password" class="form-control form-control-merge" id="register-password-confirm" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />
@@ -99,36 +99,18 @@
               </label>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-block" tabindex="5">Sign up</button>
+          <button type="submit" class="btn btn-primary btn-block" tabindex="5">Registrati</button>
         </form>
 
         <p class="text-center mt-2">
-          <span>Already have an account?</span>
+          <span>Hai già un account?</span>
           @if (Route::has('login'))
           <a href="{{ route('login') }}">
-            <span>Sign in instead</span>
+            <span>Collegati cliccando qui invece</span>
           </a>
           @endif
         </p>
 
-        <div class="divider my-2">
-          <div class="divider-text">or</div>
-        </div>
-
-        <div class="auth-footer-btn d-flex justify-content-center">
-          <a href="javascript:void(0)" class="btn btn-facebook">
-            <i data-feather="facebook"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-twitter white">
-            <i data-feather="twitter"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-google">
-            <i data-feather="mail"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-github">
-            <i data-feather="github"></i>
-          </a>
-        </div>
       </div>
     </div>
     <!-- /Register v1 -->

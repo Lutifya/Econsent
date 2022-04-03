@@ -40,8 +40,7 @@
           <h2 class="brand-text text-primary ml-1">Vuexy</h2>
         </a>
 
-        <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>
-        <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+{{--        <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>--}}
 
         <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
           @csrf
@@ -60,7 +59,7 @@
               <label for="login-password">Password</label>
               @if (Route::has('password.request'))
               <a href="{{ route('password.request') }}">
-                <small>Forgot Password?</small>
+                <small>Dimenticato la password?</small>
               </a>
               @endif
             </div>
@@ -74,39 +73,22 @@
           <div class="form-group">
             <div class="custom-control custom-checkbox">
               <input class="custom-control-input" type="checkbox" id="remember-me" name="remember-me" tabindex="3" {{ old('remember-me') ? 'checked' : '' }} />
-              <label class="custom-control-label" for="remember-me"> Remember Me </label>
+              <label class="custom-control-label" for="remember-me"> Ricordati quando riapri la pagina </label>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button>
+          <button type="submit" class="btn btn-primary btn-block" tabindex="4">Collegati</button>
         </form>
 
         <p class="text-center mt-2">
-          <span>New on our platform?</span>
-          @if (Route::has('register'))
-          <a href="{{ route('register') }}">
-            <span>Create an account</span>
+          <span>Nuovo sulla piattaforma?</span>
+{{--          @if (Route::has('register'))--}}
+          <a >
+{{--            href="{{ route('register') }}"--}}
+            <span>Richiedi Accesso</span>
           </a>
-          @endif
+{{--          @endif--}}
         </p>
 
-        <div class="divider my-2">
-          <div class="divider-text">or</div>
-        </div>
-
-        <div class="auth-footer-btn d-flex justify-content-center">
-          <a href="javascript:void(0)" class="btn btn-facebook">
-            <i data-feather="facebook"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-twitter white">
-            <i data-feather="twitter"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-google">
-            <i data-feather="mail"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-github">
-            <i data-feather="github"></i>
-          </a>
-        </div>
       </div>
     </div>
     <!-- /Login v1 -->

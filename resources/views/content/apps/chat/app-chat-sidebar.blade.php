@@ -11,7 +11,7 @@
         <img src="{{ asset('images/portrait/small/avatar-s-11.jpg') }}" alt="user_avatar" />
         <span class="avatar-status-online avatar-status-xl"></span>
       </div>
-      <h4 class="chat-user-name">John Doe</h4>
+      <h4 class="chat-user-name">{{Auth::user()->name}}</h4>
       <span class="user-post">Admin</span>
     </div>
     <!--/ User Information -->

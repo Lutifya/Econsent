@@ -29,10 +29,17 @@ use App\Http\Controllers\ChartsController;
 
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
+
+
+Auth::routes(['verify' => false, 'register' => false]);
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('logout', [AuthenticationController::class,'logout'])->name('logout');
+});
+
+Route::middleware(['auth'])->group(function (){
+
 Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce');
-
-Auth::routes(['verify' => true]);
-
 /* Route Dashboards */
 Route::group(['prefix' => 'dashboard'], function () {
   Route::get('analytics', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics');
@@ -220,3 +227,5 @@ Route::get('/maps/leaflet', [ChartsController::class,'maps_leaflet'])->name('map
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+});
