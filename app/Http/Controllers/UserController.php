@@ -29,8 +29,23 @@ class UserController extends Controller{
         return ["data" =>  $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered'=> $recordsTotal];
     }
 
-    public function changeState(Request $request){
+    public function changeState(Request $request, $id){
+        $obj = DB::table('users')
+            ->where('id', '=', $id);
 
+        $update = clone($obj);
+        $obj = $obj->get();
+
+        if (count($obj) <= 0){
+            return "Not found";
+        }
+        else{
+            $valore = $obj[0]->Attivo === 2 ? 3 : 2;
+            $update->update([
+                'Attivo' => $valore
+            ]);
+        }
+        return "okay";
     }
 
 
@@ -44,10 +59,22 @@ class UserController extends Controller{
     }
 
     // User View Page
-    public function user_view()
+    public function user_view($id)
     {
         $pageConfigs = ['pageHeader' => false];
-        return view('/content/apps/user/app-user-view', ['pageConfigs' => $pageConfigs]);
+
+        $user = DB::table('users')
+            ->where('id', '=', $id)
+            ->get();
+
+        if (count($user) <= 0){
+            return "Not found";
+        }
+
+        return view('/content/apps/user/app-user-edit', [
+            'pageConfigs' => $pageConfigs,
+            'user' => $user[0]
+        ]);
     }
 
     // User Edit Page

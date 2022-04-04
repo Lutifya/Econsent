@@ -39,7 +39,11 @@
           </svg>
           <h2 class="brand-text text-primary ml-1">Ecosent</h2>
         </a>
-
+        @if (session('error'))
+          <div class="alert alert-danger">
+            {{ session('error') }}
+          </div>
+        @endif
 {{--        <h4 class="card-title mb-1">Welcome to Ecosent! 👋</h4>--}}
 
         <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">

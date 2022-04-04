@@ -32,6 +32,7 @@ $(function () {
     var dtInvoice = dtInvoiceTable.DataTable({
       ajax: assetPath + 'data/invoice-list.json', // JSON file to add data
       autoWidth: false,
+      bFilter: false,
       columns: [
         // columns according to JSON
         { data: 'responsive_id' },
@@ -190,41 +191,15 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'Azioni',
           width: '80px',
           orderable: false,
           render: function (data, type, full, meta) {
             return (
               '<div class="d-flex align-items-center col-actions">' +
-              '<a class="mr-1" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Send Mail">' +
-              feather.icons['send'].toSvg({ class: 'font-medium-1' }) +
+              '<a class="mr-1" href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Scarica Compilazione">' +
+              feather.icons['download'].toSvg({ class: 'font-medium-1' }) +
               '</a>' +
-              '<a class="mr-1" href="' +
-              invoicePreview +
-              '" data-toggle="tooltip" data-placement="top" title="Preview Invoice">' +
-              feather.icons['eye'].toSvg({ class: 'font-medium-1' }) +
-              '</a>' +
-              '<div class="dropdown">' +
-              '<a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">' +
-              feather.icons['more-vertical'].toSvg({ class: 'font-medium-1' }) +
-              '</a>' +
-              '<div class="dropdown-menu dropdown-menu-right">' +
-              '<a href="javascript:void(0);" class="dropdown-item">' +
-              feather.icons['download'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Download</a>' +
-              '<a href="' +
-              invoiceEdit +
-              '" class="dropdown-item">' +
-              feather.icons['edit'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Edit</a>' +
-              '<a href="javascript:void(0);" class="dropdown-item">' +
-              feather.icons['trash'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Delete</a>' +
-              '<a href="javascript:void(0);" class="dropdown-item">' +
-              feather.icons['copy'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Duplicate</a>' +
-              '</div>' +
-              '</div>' +
               '</div>'
             );
           }

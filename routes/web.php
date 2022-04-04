@@ -38,23 +38,19 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', [AuthenticationController::class,'logout'])->name('logout');
 });
 
-Route::middleware(['auth'])->group(function (){
+Route::middleware(['auth', 'checkBanned'])->group(function (){
 
 Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce');
-/* Route Dashboards */
-Route::group(['prefix' => 'dashboard'], function () {
-  Route::get('analytics', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics');
-  Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce');
-});
-/* Route Dashboards */
-
 
 Route::group((['prefix' => 'user']), function(){
     Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
     Route::get('/', [UserController::class,'user_list'])->name('app-user-list');
-    Route::get('view/{id}', [UserController::class,'user_view'])->name('app-user-view');
-    Route::get('edit/{id}', [UserController::class,'user_edit'])->name('app-user-edit');
+//    Route::get('view/{id}', [UserController::class,'user_view'])->name('app-user-view');
+    Route::get('info/{id}', [UserController::class,'user_view'])->name('app-user-view');
+//    Route::get('edit/{id}', [UserController::class,'user_edit'])->name('app-user-edit');
+    Route::get('changeState/{id}', [UserController::class,'changeState'])->name('app-user-edit');
 });
+
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {
   Route::get('email', [AppsController::class,'emailApp'])->name('app-email');

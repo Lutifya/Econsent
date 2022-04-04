@@ -34,11 +34,11 @@
                   />
                   <div class="d-flex flex-column ml-1">
                     <div class="user-info mb-1">
-                      <h4 class="mb-0">Eleanor Aguilar</h4>
-                      <span class="card-text">eleanor.aguilar@gmail.com</span>
+                      <h4 class="mb-0">{{$user->name}}</h4>
+                      <span class="card-text">{{$user->email}}</span>
                     </div>
                     <div class="d-flex flex-wrap">
-                      <a href="{{url('app/user/edit')}}" class="btn btn-primary">Edit</a>
+                      <a href="{{url('/user/edit/'.$user->id)}}" class="btn btn-primary">Edit</a>
                       <button class="btn btn-outline-danger ml-1">Delete</button>
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                     <i data-feather="star" class="mr-1"></i>
                     <span class="card-text user-info-title font-weight-bold mb-0">Role</span>
                   </div>
-                  <p class="card-text mb-0">Admin</p>
+                  <p class="card-text mb-0">{{$user->role}}</p>
                 </div>
                 <div class="d-flex flex-wrap my-50">
                   <div class="user-info-title">
@@ -140,234 +140,6 @@
   </div>
   <!-- User Card & Plan Ends -->
 
-  <!-- User Timeline & Permissions Starts -->
-  <div class="row">
-    <!-- information starts -->
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title mb-2">User Timeline</h4>
-        </div>
-        <div class="card-body">
-          <ul class="timeline">
-            <li class="timeline-item">
-              <span class="timeline-point timeline-point-indicator"></span>
-              <div class="timeline-event">
-                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>12 Invoices have been paid</h6>
-                  <span class="timeline-event-time">12 min ago</span>
-                </div>
-                <p>Invoices have been paid to the company.</p>
-                <div class="media align-items-center">
-                  <img
-                    class="mr-1"
-                    src="{{asset('images/icons/file-icons/pdf.png')}}"
-                    alt="invoice"
-                    height="23"
-                  />
-                  <div class="media-body">invoice.pdf</div>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
-              <div class="timeline-event">
-                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Client Meeting</h6>
-                  <span class="timeline-event-time">45 min ago</span>
-                </div>
-                <p>Project meeting with john @10:15am.</p>
-                <div class="media align-items-center">
-                  <div class="avatar">
-                    <img src="{{asset('images/avatars/12-small.png')}}" alt="avatar" height="38" width="38" />
-                  </div>
-                  <div class="media-body ml-50">
-                    <h6 class="mb-0">John Doe (Client)</h6>
-                    <span>CEO of Infibeam</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="timeline-item">
-              <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
-              <div class="timeline-event">
-                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                  <h6>Create a new project for client</h6>
-                  <span class="timeline-event-time">2 days ago</span>
-                </div>
-                <p class="mb-0">Add files to new design folder</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- information Ends -->
-
-    <!-- User Permissions Starts -->
-    <div class="col-md-6">
-      <!-- User Permissions -->
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Permissions</h4>
-        </div>
-        <p class="card-text ml-2">Permission according to roles</p>
-        <div class="table-responsive">
-          <table class="table table-striped table-borderless">
-            <thead class="thead-light">
-              <tr>
-                <th>Module</th>
-                <th>Read</th>
-                <th>Write</th>
-                <th>Create</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Admin</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="admin-read" checked disabled />
-                    <label class="custom-control-label" for="admin-read"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="admin-write" disabled />
-                    <label class="custom-control-label" for="admin-write"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="admin-create" disabled />
-                    <label class="custom-control-label" for="admin-create"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="admin-delete" disabled />
-                    <label class="custom-control-label" for="admin-delete"></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Staff</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="staff-read" disabled />
-                    <label class="custom-control-label" for="staff-read"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="staff-write" checked disabled />
-                    <label class="custom-control-label" for="staff-write"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="staff-create" disabled />
-                    <label class="custom-control-label" for="staff-create"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="staff-delete" disabled />
-                    <label class="custom-control-label" for="staff-delete"></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Author</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="author-read" checked disabled />
-                    <label class="custom-control-label" for="author-read"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="author-write" disabled />
-                    <label class="custom-control-label" for="author-write"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="author-create" checked disabled />
-                    <label class="custom-control-label" for="author-create"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="author-delete" disabled />
-                    <label class="custom-control-label" for="author-delete"></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Contributor</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="contributor-read" disabled />
-                    <label class="custom-control-label" for="contributor-read"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="contributor-write" disabled />
-                    <label class="custom-control-label" for="contributor-write"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="contributor-create" disabled />
-                    <label class="custom-control-label" for="contributor-create"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="contributor-delete" disabled />
-                    <label class="custom-control-label" for="contributor-delete"></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>User</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="user-read" disabled />
-                    <label class="custom-control-label" for="user-read"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="user-create" disabled />
-                    <label class="custom-control-label" for="user-create"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="user-write" disabled />
-                    <label class="custom-control-label" for="user-write"></label>
-                  </div>
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="user-delete" checked disabled />
-                    <label class="custom-control-label" for="user-delete"></label>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- /User Permissions -->
-    </div>
-    <!-- User Permissions Ends -->
-  </div>
-  <!-- User Timeline & Permissions Ends -->
 
   <!-- User Invoice Starts-->
   <div class="row invoice-list-wrapper">
