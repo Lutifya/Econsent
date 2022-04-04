@@ -1,12 +1,4 @@
-/*=========================================================================================
-    File Name: app-user-list.js
-    Description: User List page
-    --------------------------------------------------------------------------------------
-    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
 
-==========================================================================================*/
 $(function () {
   'use strict';
 
@@ -14,19 +6,13 @@ $(function () {
     newUserSidebar = $('.new-user-modal'),
     newUserForm = $('.add-new-user'),
     statusObj = {
-      1: { title: 'Pending', class: 'badge-light-warning' },
-      2: { title: 'Active', class: 'badge-light-success' },
-      3: { title: 'Inactive', class: 'badge-light-secondary' }
+      1: { title: 'In sospeso', class: 'badge-light-warning' },
+      2: { title: 'Attivo', class: 'badge-light-success' },
+      3: { title: 'Inattivo', class: 'badge-light-secondary' }
     };
-
-  var assetPath = '../../../app-assets/',
-    userView = 'app-user-view.html',
-    userEdit = 'app-user-edit.html';
-  if ($('body').attr('data-framework') === 'laravel') {
-    assetPath = $('body').attr('data-asset-path');
-    userView = assetPath + 'app/user/view';
-    userEdit = assetPath + 'app/user/edit';
-  }
+  var assetPath = $('body').attr('data-asset-path'),
+      userView = assetPath + 'user/view',
+      userEdit = assetPath + 'user/edit';
 
   // Users List datatable
   if (dtUserTable.length) {
@@ -134,9 +120,10 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'Azioni',
           orderable: false,
           render: function (data, type, full, meta) {
+            console.log(full);
             return (
               '<div class="btn-group">' +
               '<a class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">' +
@@ -145,17 +132,17 @@ $(function () {
               '<div class="dropdown-menu dropdown-menu-right">' +
               '<a href="' +
               userView +
-              '" class="dropdown-item">' +
+              '/'+ full.id + '" class="dropdown-item">' +
               feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Details</a>' +
+              'Informazioni</a>' +
               '<a href="' +
               userEdit +
-              '" class="dropdown-item">' +
+              '/'+ full.id + '" class="dropdown-item">' +
               feather.icons['archive'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Edit</a>' +
-              '<a href="javascript:;" class="dropdown-item delete-record">' +
+              'Modifica</a>' +
+              '<a href="javascript:;" data-id="'+ full.id + '" class="dropdown-item delete-record">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Delete</a></div>' +
+              'Disattiva/Riattiva </a></div>' +
               '</div>' +
               '</div>'
             );
@@ -340,4 +327,10 @@ $(function () {
     selector: '[data-toggle="tooltip"]',
     container: 'body'
   });
+
+  $(document).on("click", '.delete-record', function(){
+    //fare in modo di chiedere conferma
+    alert('prova');
+  });
 });
+

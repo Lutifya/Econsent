@@ -3,6 +3,10 @@
 return [
   "Apps & Pages" => "Apps & Pages",
   "User Interface" => "User Interface",
+  "Utenti" => "Utenti",
+  "Siti" => "Siti",
+  "Dizionari" => "Dizionari",
+  "Documenti" => "Documenti",
   "Dashboards" => "Dashboards",
   "Analytics" => "Analytics",
   "eCommerce" => "eCommerce",

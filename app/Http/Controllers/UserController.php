@@ -28,6 +28,12 @@ class UserController extends Controller{
 
         return ["data" =>  $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered'=> $recordsTotal];
     }
+
+    public function changeState(Request $request){
+
+    }
+
+
     // User List Page
     public function user_list()
     {

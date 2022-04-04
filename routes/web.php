@@ -51,9 +51,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 Route::group((['prefix' => 'user']), function(){
     Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
-    Route::get('list', [UserController::class,'user_list'])->name('app-user-list');
-    Route::get('view', [UserController::class,'user_view'])->name('app-user-view');
-    Route::get('edit', [UserController::class,'user_edit'])->name('app-user-edit');
+    Route::get('/', [UserController::class,'user_list'])->name('app-user-list');
+    Route::get('view/{id}', [UserController::class,'user_view'])->name('app-user-view');
+    Route::get('edit/{id}', [UserController::class,'user_edit'])->name('app-user-edit');
 });
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {

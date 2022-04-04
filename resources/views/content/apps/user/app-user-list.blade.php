@@ -39,8 +39,8 @@
             <th>Email</th>
             <th>Ruolo</th>
             <th>Sito</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>Stato</th>
+            <th>Azioni</th>
           </tr>
         </thead>
       </table>
