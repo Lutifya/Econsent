@@ -40,15 +40,20 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::middleware(['auth', 'checkBanned'])->group(function (){
 
-Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce');
+Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard');
 
 Route::group((['prefix' => 'user']), function(){
-    Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
-    Route::get('/', [UserController::class,'user_list'])->name('app-user-list');
-//    Route::get('view/{id}', [UserController::class,'user_view'])->name('app-user-view');
-    Route::get('info/{id}', [UserController::class,'user_view'])->name('app-user-view');
-//    Route::get('edit/{id}', [UserController::class,'user_edit'])->name('app-user-edit');
-    Route::get('changeState/{id}', [UserController::class,'changeState'])->name('app-user-edit');
+
+    Route::middleware(['role:admin'])->group(function(){
+        Route::get('getAllUsers', [UserController::class, 'getAllUsers']);
+        Route::get('/', [UserController::class,'user_list'])->name('utenti');
+        Route::get('info/{id}', [UserController::class,'user_view']);
+        Route::get('changeState/{id}', [UserController::class,'changeState']);
+        Route::post('saveInfo/{id}', [UserController::class,'saveModify']);
+    });
+
+    Route::get('profile', [UserController::class,'user_list']);
+    Route::post('saveProfile', [UserController::class,'saveModify']);
 });
 
 /* Route Apps */

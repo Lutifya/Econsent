@@ -1,12 +1,15 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller{
+class UserController extends Controller
+{
 
-    public function getAllUsers(Request $request){
+    public function getAllUsers(Request $request)
+    {
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
 
@@ -26,17 +29,18 @@ class UserController extends Controller{
 
         $recordsTotal = count($dato);
 
-        return ["data" =>  $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered'=> $recordsTotal];
+        return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
 
-    public function changeState(Request $request, $id){
+    public function changeState(Request $request, $id)
+    {
         $obj = DB::table('users')
             ->where('id', '=', $id);
 
         $update = clone($obj);
         $obj = $obj->get();
 
-        if (count($obj) <= 0){
+        if (count($obj) <= 0) {
             return "Not found";
         }
         else{
@@ -58,6 +62,52 @@ class UserController extends Controller{
         return view('/content/apps/user/app-user-list', ['pageConfigs' => $pageConfigs, 'siti' => $siti]);
     }
 
+    public function saveModify(Request $request, $id)
+    {
+        $user = DB::table('users')
+            ->where('id', '=', $id);
+
+        $check = $user->get();
+
+        if (count($check) <= 0) {
+            return "Not found";
+        }
+        $genere = $request->get("genere") === 'male' ? 1 : 2;
+        $user->update([
+            "name" => $request->get("username"),
+            "email" => $request->get("email"),
+            "role" => $request->get("role"),
+            "genere" => $genere,
+            "data_nascita" => $request->get("data_nascita"),
+            "Attivo" => $request->get("Attivo"),
+            "Sito_appartenenza" => $request->get("Sito_appartenenza"),
+            "CF" => $request->get("CF"),
+        ]);
+
+        return "okay";
+    }
+
+    public function saveProfile(Request $request)
+    {
+        $user = DB::table('users')
+            ->where('id', '=', Auth::user()->id);
+
+        $genere = $request->get("genere") === 'male' ? 1 : 2;
+
+        $user->update([
+            "name" => $request->get("username"),
+            "email" => $request->get("email"),
+            "role" => $request->get("role"),
+            "genere" => $genere,
+            "data_nascita" => $request->get("data_nascita"),
+            "Attivo" => $request->get("Attivo"),
+            "Sito_appartenenza" => $request->get("Sito_appartenenza"),
+            "CF" => $request->get("CF"),
+        ]);
+
+        return "okay";
+    }
+
     // User View Page
     public function user_view($id)
     {
@@ -67,13 +117,17 @@ class UserController extends Controller{
             ->where('id', '=', $id)
             ->get();
 
-        if (count($user) <= 0){
+        $siti = DB::table('sito')
+            ->get();
+
+        if (count($user) <= 0) {
             return "Not found";
         }
 
         return view('/content/apps/user/app-user-edit', [
             'pageConfigs' => $pageConfigs,
-            'user' => $user[0]
+            'user' => $user[0],
+            'siti' => $siti,
         ]);
     }
 
