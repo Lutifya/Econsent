@@ -327,6 +327,35 @@ $(function () {
         container: 'body'
     });
 
+    $('.data-submit').on('click', function (e) {
+        e.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        let variabili = {
+            username : $('#username').val(),
+            email : $('#email').val(),
+            role : $('#role').val(),
+            Sito_appartenenza : $('#sito').val(),
+            CF : $('#cf').val(),
+        };
+
+        jQuery.ajax({
+            url: assetPath + 'user/addUser',
+            method: 'POST',
+            data: variabili,
+            success: function (result) {
+                if(result === "okay"){
+                    location.reload();
+                }
+            }
+        });
+    });
+
     $(document).on("click", '.delete-record', function () {
 
         $.ajaxSetup({

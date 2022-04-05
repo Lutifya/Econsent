@@ -44,9 +44,16 @@
             {{ session('error') }}
           </div>
         @endif
+
+        @if (session('newUser'))
+          <div class="alert alert-success">
+            {{ session('newUser') }}
+          </div>
+        @endif
+
 {{--        <h4 class="card-title mb-1">Welcome to Ecosent! 👋</h4>--}}
 
-        <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
+        <form class="auth-login-form mt-2" method="POST" action="{{ route('authenticate') }}">
           @csrf
           <div class="form-group">
             <label for="login-email" class="form-label">Email</label>

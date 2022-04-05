@@ -55,25 +55,25 @@
           </div>
           <div class="modal-body flex-grow-1">
             <div class="form-group">
-              <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+              <label class="form-label" for="basic-icon-default-fullname">Nome e Cognome</label>
               <input
                 type="text"
                 class="form-control dt-full-name"
-                id="basic-icon-default-fullname"
-                placeholder="John Doe"
-                name="user-fullname"
-                aria-label="John Doe"
+                id="username"
+                placeholder="Nome Cognome"
+                name="username"
+                aria-label="Nome e Cognome"
                 aria-describedby="basic-icon-default-fullname2"
               />
             </div>
             <div class="form-group">
-              <label class="form-label" for="basic-icon-default-uname">Username</label>
+              <label class="form-label" for="basic-icon-default-uname">Codice Fiscale</label>
               <input
                 type="text"
-                id="basic-icon-default-uname"
+                id="cf"
                 class="form-control dt-uname"
-                placeholder="Web Developer"
-                aria-label="jdoe1"
+                placeholder="DOEJHN99P16F704T"
+                aria-label="Codice fiscale"
                 aria-describedby="basic-icon-default-uname2"
                 name="user-name"
               />
@@ -81,35 +81,31 @@
             <div class="form-group">
               <label class="form-label" for="basic-icon-default-email">Email</label>
               <input
-                type="text"
-                id="basic-icon-default-email"
+                type="email"
+                id="email"
                 class="form-control dt-email"
-                placeholder="john.doe@example.com"
-                aria-label="john.doe@example.com"
+                placeholder="nome.cognome@example.com"
+                aria-label="nome.cognome@example.com"
                 aria-describedby="basic-icon-default-email2"
                 name="user-email"
               />
-              <small class="form-text text-muted"> You can use letters, numbers & periods </small>
             </div>
             <div class="form-group">
               <label class="form-label" for="user-role">Ruolo Utente</label>
-              <select id="user-role" class="form-control">
-                <option value="subscriber">User</option>
-{{--                <option value="editor">Editor</option>--}}
-{{--                <option value="maintainer">Maintainer</option>--}}
-{{--                <option value="author">Author</option>--}}
+              <select id="role" class="form-control">
+                <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
             <div class="form-group mb-2">
               <label class="form-label" for="user-plan">Seleziona Sito</label>
-              <select id="user-plan" class="form-control">
+              <select id="sito" class="form-control">
                 @foreach($siti as $sito)
-                  <option value="basic">{{$sito->Nome_sito}}</option>
+                  <option value="{{$sito->Nome_sito}}">{{$sito->Nome_sito}}</option>
                 @endforeach
               </select>
             </div>
-            <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+            <button type="submit" class="btn btn-primary mr-1 data-submit">Aggiungi</button>
             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
           </div>
         </form>

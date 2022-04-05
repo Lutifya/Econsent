@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
@@ -32,7 +33,11 @@ use App\Http\Controllers\ChartsController;
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 
 
+Route::post('authenticate', [AuthenticationController::class, 'authenticate'])->name('authenticate');
+
 Auth::routes(['verify' => false, 'register' => false]);
+
+
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', [AuthenticationController::class,'logout'])->name('logout');
@@ -50,10 +55,11 @@ Route::group((['prefix' => 'user']), function(){
         Route::get('info/{id}', [UserController::class,'user_view']);
         Route::get('changeState/{id}', [UserController::class,'changeState']);
         Route::post('saveInfo/{id}', [UserController::class,'saveModify']);
+        Route::post('addUser', [UserController::class,'addUser']);
     });
 
-    Route::get('profile', [UserController::class,'user_list']);
-    Route::post('saveProfile', [UserController::class,'saveModify']);
+    Route::get('profile', [UserController::class,'profile']);
+    Route::post('saveProfile', [UserController::class,'saveProfile']);
 });
 
 /* Route Apps */

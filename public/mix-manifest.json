@@ -117,6 +117,7 @@
     "/js/scripts/pages/app-todo.js": "/js/scripts/pages/app-todo.js",
     "/js/scripts/pages/app-user-edit.js": "/js/scripts/pages/app-user-edit.js",
     "/js/scripts/pages/app-user-list.js": "/js/scripts/pages/app-user-list.js",
+    "/js/scripts/pages/app-user-profile.js": "/js/scripts/pages/app-user-profile.js",
     "/js/scripts/pages/app-user-view.js": "/js/scripts/pages/app-user-view.js",
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js",

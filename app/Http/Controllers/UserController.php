@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -53,6 +54,7 @@ class UserController extends Controller
     }
 
 
+
     // User List Page
     public function user_list()
     {
@@ -74,14 +76,14 @@ class UserController extends Controller
         }
         $genere = $request->get("genere") === 'male' ? 1 : 2;
         $user->update([
-            "name" => $request->get("username"),
-            "email" => $request->get("email"),
-            "role" => $request->get("role"),
-            "genere" => $genere,
+            "role" => trim($request->get("role")),
+            "name" => trim($request->get("username")),
+            "email" => trim($request->get("email")),
+            "genere" => trim(($genere)),
             "data_nascita" => $request->get("data_nascita"),
-            "Attivo" => $request->get("Attivo"),
-            "Sito_appartenenza" => $request->get("Sito_appartenenza"),
-            "CF" => $request->get("CF"),
+            "Attivo" => trim($request->get("Attivo")),
+            "Sito_appartenenza" => trim($request->get("Sito_appartenenza")),
+            "CF" => trim($request->get("CF")),
         ]);
 
         return "okay";
@@ -95,15 +97,26 @@ class UserController extends Controller
         $genere = $request->get("genere") === 'male' ? 1 : 2;
 
         $user->update([
-            "name" => $request->get("username"),
-            "email" => $request->get("email"),
-            "role" => $request->get("role"),
-            "genere" => $genere,
+            "name" => trim($request->get("username")),
+            "email" => trim($request->get("email")),
+            "genere" => trim(($genere)),
             "data_nascita" => $request->get("data_nascita"),
-            "Attivo" => $request->get("Attivo"),
-            "Sito_appartenenza" => $request->get("Sito_appartenenza"),
-            "CF" => $request->get("CF"),
+            "Sito_appartenenza" => trim($request->get("Sito_appartenenza")),
+            "CF" => trim($request->get("CF")),
         ]);
+
+        return "okay";
+    }
+
+    public function addUser(Request $request){
+        DB::table('users')
+            ->insert([
+                "name" => trim($request->get("username")),
+                "email" => trim($request->get("email")),
+                "Sito_appartenenza" => trim($request->get("Sito_appartenenza")),
+                "CF" => trim($request->get("CF")),
+                "role" => trim($request->get("role")),
+            ]);
 
         return "okay";
     }
@@ -125,6 +138,23 @@ class UserController extends Controller
         }
 
         return view('/content/apps/user/app-user-edit', [
+            'pageConfigs' => $pageConfigs,
+            'user' => $user[0],
+            'siti' => $siti,
+        ]);
+    }
+
+    public function profile(){
+        $pageConfigs = ['pageHeader' => false];
+
+        $user = DB::table('users')
+            ->where('id', '=', Auth::user()->id)
+            ->get();
+
+        $siti = DB::table('sito')
+            ->get();
+
+        return view('/content/apps/user/app-user-profile', [
             'pageConfigs' => $pageConfigs,
             'user' => $user[0],
             'siti' => $siti,

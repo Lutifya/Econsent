@@ -165,7 +165,7 @@
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-            <a class="dropdown-item" href="{{url('page/profile')}}">
+            <a class="dropdown-item" href="{{url('user/profile')}}">
               <i class="mr-50" data-feather="user"></i> Profile
             </a>
 {{--            <a class="dropdown-item" href="{{url('app/email')}}">--}}
