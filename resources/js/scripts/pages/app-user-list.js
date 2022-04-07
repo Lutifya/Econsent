@@ -320,6 +320,7 @@ $(function () {
         });
     }
 
+    var duplicate = false;
     // To initialize tooltip with body container
     $('body').tooltip({
         selector: '[data-toggle="tooltip"]',
@@ -380,7 +381,7 @@ $(function () {
         }
 
 
-        if(isValid){
+        if(isValid && !duplicate){
             jQuery.ajax({
                 url: assetPath + 'user/addUser',
                 method: 'POST',
@@ -393,6 +394,35 @@ $(function () {
             });
         }
 
+    });
+
+    $( "#email" ).keyup(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        jQuery.ajax({
+            url: assetPath + 'user/existEmail',
+            method: 'POST',
+            data: {
+                email: $('#email').val(),
+                // type: jQuery('#type').val(),
+                // price: jQuery('#price').val()
+            },
+            success: function (result) {
+                let error_duplicate = $('#error_duplicate');
+                if(result==="true"){
+                    duplicate = true;
+                    error_duplicate.css('display', 'block');
+                }
+                else{
+                    duplicate = false;
+                    error_duplicate.css('display', 'none');
+                }
+            }
+        });
     });
 
     $(document).on("click", '.delete-record', function () {

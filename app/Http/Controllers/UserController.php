@@ -106,17 +106,17 @@ class UserController extends Controller
         return "okay";
     }
 
-    private function existEmail(Request $request)
+    public function existEmail(Request $request)
     {
         $email = DB::table('users')
             ->where('email', '=', trim($request->email))
             ->get();
 
         if(count($email) > 0){
-            return true;
+            return "true";
         }
 
-        return false;
+        return "false";
     }
 
     private function checkEmail($email)
