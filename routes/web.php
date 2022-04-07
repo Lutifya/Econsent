@@ -56,6 +56,7 @@ Route::group((['prefix' => 'user']), function(){
         Route::get('changeState/{id}', [UserController::class,'changeState']);
         Route::post('saveInfo/{id}', [UserController::class,'saveModify']);
         Route::post('addUser', [UserController::class,'addUser']);
+        Route::post('existEmail', [UserController::class,'existEmail']);
     });
 
     Route::get('profile', [UserController::class,'profile']);

@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'User List')
+@section('title', 'Lista Utenti')
 
 @section('vendor-style')
   {{-- Page Css files --}}
@@ -10,7 +10,13 @@
 @endsection
 
 @section('page-style')
-  {{-- Page Css files --}}
+  <style>
+    .errore_validazione {
+      outline: #ff0e0e outset 1px;
+      border-color: #f10000;
+      box-shadow: 0 0 2pt 2pt #963232;
+    }
+  </style>
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
 @endsection
@@ -55,7 +61,7 @@
           </div>
           <div class="modal-body flex-grow-1">
             <div class="form-group">
-              <label class="form-label" for="basic-icon-default-fullname">Nome e Cognome</label>
+              <label class="form-label" for="username">Nome e Cognome</label>
               <input
                 type="text"
                 class="form-control dt-full-name"
@@ -65,9 +71,10 @@
                 aria-label="Nome e Cognome"
                 aria-describedby="basic-icon-default-fullname2"
               />
+              <label class="form-label" id="error_username" for="username" style="display: none; color: red;">Inserire Nome e Cognome</label>
             </div>
             <div class="form-group">
-              <label class="form-label" for="basic-icon-default-uname">Codice Fiscale</label>
+              <label class="form-label" for="cf">Codice Fiscale</label>
               <input
                 type="text"
                 id="cf"
@@ -77,9 +84,10 @@
                 aria-describedby="basic-icon-default-uname2"
                 name="user-name"
               />
+              <label class="form-label" for="cf" id="error_cf" style="display: none; color: red;">Inserire il Codice fiscale 16 caratteri</label>
             </div>
             <div class="form-group">
-              <label class="form-label" for="basic-icon-default-email">Email</label>
+              <label class="form-label" for="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -89,6 +97,7 @@
                 aria-describedby="basic-icon-default-email2"
                 name="user-email"
               />
+              <label class="form-label" id="error_email" for="email" style="display: none; color: red;">Inserire una mail valida</label>
             </div>
             <div class="form-group">
               <label class="form-label" for="user-role">Ruolo Utente</label>

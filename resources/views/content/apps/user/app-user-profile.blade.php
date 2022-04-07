@@ -173,6 +173,7 @@
                                                 type="text"
                                                 class="form-control birthdate-picker"
                                                 name="dob"
+                                                value="{{$user->data_nascita}}"
                                                 placeholder="YYYY-MM-DD"
                                         />
                                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'User Edit')
+@section('title', 'Modifica Utente')
 
 @section('vendor-style')
     {{-- Vendor Css files --}}
@@ -9,7 +9,6 @@
 @endsection
 
 @section('page-style')
-    {{-- Page Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
@@ -178,6 +177,7 @@
                                                 type="text"
                                                 class="form-control birthdate-picker"
                                                 name="dob"
+                                                value="{{$user->data_nascita}}"
                                                 placeholder="YYYY-MM-DD"
                                         />
                                     </div>

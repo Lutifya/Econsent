@@ -43,8 +43,7 @@ class UserController extends Controller
 
         if (count($obj) <= 0) {
             return "Not found";
-        }
-        else{
+        } else {
             $valore = $obj[0]->Attivo === 2 ? 3 : 2;
             $update->update([
                 'Attivo' => $valore
@@ -52,7 +51,6 @@ class UserController extends Controller
         }
         return "okay";
     }
-
 
 
     // User List Page
@@ -108,13 +106,45 @@ class UserController extends Controller
         return "okay";
     }
 
-    public function addUser(Request $request){
+    private function existEmail(Request $request)
+    {
+        $email = DB::table('users')
+            ->where('email', '=', trim($request->email))
+            ->get();
+
+        if(count($email) > 0){
+            return true;
+        }
+
+        return false;
+    }
+
+    private function checkEmail($email)
+    {
+        $find1 = strpos($email, '@');
+        $find2 = strpos($email, '.');
+        return ($find1 !== false && $find2 !== false && $find2 > $find1);
+    }
+
+    public function addUser(Request $request)
+    {
+        $isValid = true;
+
+        $username = trim($request->get("username"));
+        $email = trim($request->get("email"));
+        $CF = trim($request->get("CF"));
+
+        if (!$this->checkEmail($email) || strlen($username) < 5 || strlen($CF) > 16 || strlen($CF) < 16) {
+            return "errore nei campi di validazione";
+        }
+
+
         DB::table('users')
             ->insert([
-                "name" => trim($request->get("username")),
-                "email" => trim($request->get("email")),
+                "name" => $username,
+                "email" => $email,
                 "Sito_appartenenza" => trim($request->get("Sito_appartenenza")),
-                "CF" => trim($request->get("CF")),
+                "CF" => $CF,
                 "role" => trim($request->get("role")),
             ]);
 
@@ -144,7 +174,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function profile(){
+    public function profile()
+    {
         $pageConfigs = ['pageHeader' => false];
 
         $user = DB::table('users')

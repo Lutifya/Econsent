@@ -122,7 +122,6 @@ $(function () {
                     title: 'Azioni',
                     orderable: false,
                     render: function (data, type, full, meta) {
-                        console.log(full);
                         return (
                             '<div class="btn-group">' +
                             '<a class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">' +
@@ -336,24 +335,64 @@ $(function () {
             }
         });
 
+        let cf = $('#cf');
+        let email = $('#email');
+        let username = $('#username');
+        let error_username = $('#error_username');
+        let error_cf = $('#error_cf');
+        let error_email = $('#error_email');
+
+
         let variabili = {
-            username : $('#username').val(),
-            email : $('#email').val(),
+            username : username.val(),
+            email : email.val(),
             role : $('#role').val(),
             Sito_appartenenza : $('#sito').val(),
-            CF : $('#cf').val(),
+            CF : cf.val(),
         };
 
-        jQuery.ajax({
-            url: assetPath + 'user/addUser',
-            method: 'POST',
-            data: variabili,
-            success: function (result) {
-                if(result === "okay"){
-                    location.reload();
+        let isValid = true;
+        if(!validateEmail(variabili.email)){
+            isValid = false;
+            email.addClass('errore_validazione');
+            error_email.css('display', 'block');
+        } else{
+            email.removeClass('errore_validazione');
+            error_email.css('display', 'none');
+        }
+
+        if(!variabili.username.length > 0){
+            isValid = false;
+            username.addClass('errore_validazione');
+            error_username.css('display', 'block');
+        } else{
+            username.removeClass('errore_validazione');
+            error_username.css('display', 'none');
+        }
+
+        if(variabili.CF.length !== 16){
+            isValid = false;
+            cf.addClass('errore_validazione');
+            error_cf.css('display', 'block');
+        } else{
+            cf.removeClass('errore_validazione');
+            error_cf.css('display', 'none');
+        }
+
+
+        if(isValid){
+            jQuery.ajax({
+                url: assetPath + 'user/addUser',
+                method: 'POST',
+                data: variabili,
+                success: function (result) {
+                    if(result === "okay"){
+                        location.reload();
+                    }
                 }
-            }
-        });
+            });
+        }
+
     });
 
     $(document).on("click", '.delete-record', function () {
@@ -380,5 +419,15 @@ $(function () {
         });
 
     });
+
+
 });
+
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
 
