@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SitiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -57,11 +58,21 @@ Route::group((['prefix' => 'user']), function(){
         Route::post('saveInfo/{id}', [UserController::class,'saveModify']);
         Route::post('addUser', [UserController::class,'addUser']);
         Route::post('existEmail', [UserController::class,'existEmail']);
+
     });
 
     Route::get('profile', [UserController::class,'profile']);
     Route::post('saveProfile', [UserController::class,'saveProfile']);
 });
+    Route::group((['prefix' => 'siti']), function(){
+
+        Route::middleware(['role:admin'])->group(function(){
+            Route::get('/', [SitiController::class, 'index'])->name('siti');
+            Route::get('getAllSiti', [SitiController::class, 'getAllSiti']);
+            Route::post('viewData', [SitiController::class, 'viewData']);
+        });
+    });
+
 
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {

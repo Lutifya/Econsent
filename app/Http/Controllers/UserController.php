@@ -13,6 +13,8 @@ class UserController extends Controller
     {
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
+        $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
+
 
         $dato = DB::table('users')
             ->select([
@@ -24,6 +26,8 @@ class UserController extends Controller
                 'role',
                 'Sito_appartenenza as current_plan',
                 'Attivo as status'])
+            ->where('Sito_appartenenza','like', "%$searchValue%")
+            ->orWhere('email','like', "%$searchValue%")
             ->offset($start)
             ->limit($length)
             ->get();
