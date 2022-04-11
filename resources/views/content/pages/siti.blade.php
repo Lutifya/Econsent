@@ -59,63 +59,61 @@
                         </div>
                         <div class="modal-body flex-grow-1">
                             <label class="form-label" id="error_duplicate" for="email"
-                                   style="display:none; color: red;">Indirizzo sito già esistente!</label>
+                                   style="display:none; color: red;">Nome sito già esistente!</label>
                             <div class="form-group">
                                 <label class="form-label" for="username">Indirizzo Sito</label>
                                 <input
                                         type="text"
                                         class="form-control dt-full-name"
-                                        id="username"
-                                        placeholder="Nome Cognome"
-                                        name="username"
-                                        aria-label="Nome e Cognome"
+                                        id="indirizzo_sito"
+                                        placeholder="Indirizzo Sito"
+                                        name="indirizzo_sito"
+                                        aria-label="Indirizzo Sito"
                                         aria-describedby="basic-icon-default-fullname2"
                                 />
-                                <label class="form-label" id="error_username" for="username"
-                                       style="display: none; color: red;">Inserire Nome e Cognome</label>
+                                <label class="form-label" id="err_indirizzo" for="username"
+                                       style="display: none; color: red;">Inserire Indirizzo sito</label>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="cf">Nome Sito</label>
                                 <input
                                         type="text"
-                                        id="cf"
+                                        id="nome_sito"
                                         class="form-control dt-uname"
-                                        placeholder="DOEJHN99P16F704T"
-                                        aria-label="Codice fiscale"
+                                        placeholder="Nome sito"
+                                        aria-label="Nome Sito"
                                         aria-describedby="basic-icon-default-uname2"
-                                        name="user-name"
+                                        name="sito-name"
                                 />
-                                <label class="form-label" for="cf" id="error_cf" style="display: none; color: red;">Inserire
-                                    il Codice fiscale 16 caratteri</label>
+                                <label class="form-label" for="cf" id="error_nome" style="display: none; color: red;">Inserire il Nome del Sito</label>
                             </div>
                             <div class="form-group">
                                 <label class="form-label" for="email">Reazione1 Sito</label>
                                 <input
-                                        type="email"
-                                        id="email"
-                                        class="form-control dt-email"
-                                        placeholder="nome.cognome@example.com"
-                                        aria-label="nome.cognome@example.com"
+                                        type="text"
+                                        id="reazione1"
+                                        class="form-control"
+                                        placeholder="Reazione1"
+                                        aria-label="Reazione1"
                                         aria-describedby="basic-icon-default-email2"
-                                        name="user-email"
+                                        name="sito-reazione1"
                                 />
-                                <label class="form-label" id="error_email" for="email"
-                                       style="display: none; color: red;">Inserire una mail valida</label>
+                                <label class="form-label" id="error_reazione1" for="email"
+                                       style="display: none; color: red;">Inserire correttamente la Reazione1</label>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="user-role">Reazione 2 Sito</label>
-                                <select id="role" class="form-control">
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label class="form-label" for="user-plan">Seleziona Sito</label>
-                                <select id="sito" class="form-control">
-{{--                                    @foreach($siti as $sito)--}}
-{{--                                        <option value="{{$sito->Nome_sito}}">{{$sito->Nome_sito}}</option>--}}
-{{--                                    @endforeach--}}
-                                </select>
+                                <label class="form-label" for="email">Reazione2 Sito</label>
+                                <input
+                                        type="text"
+                                        id="reazione2"
+                                        class="form-control dt-email"
+                                        placeholder="Reazione2"
+                                        aria-label="Reazione2"
+                                        aria-describedby="basic-icon-default-email2"
+                                        name="sito-reazione2"
+                                />
+                                <label class="form-label" id="error_reazione2" for="email"
+                                       style="display: none; color: red;">Inserire correttamente la Reazione</label>
                             </div>
                             <button type="submit" class="btn btn-primary mr-1 data-submit">Aggiungi</button>
                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

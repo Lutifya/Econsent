@@ -50,7 +50,7 @@ class SitiController extends Controller
     {
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
-        $searchValue = $request->get('search[value]') !== null ? $request->get('search[value]') : '';
+        $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
 
         $dato = DB::table('sito')
             ->select([
@@ -71,6 +71,43 @@ class SitiController extends Controller
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
 
+    public function addSito(Request $request)
+    {
+        $isValid = true;
+
+        $nome_sito = trim($request->get("nome_sito"));
+        $indirizzo_sito = trim($request->get("indirizzo_sito"));
+        $reazione1 = trim($request->get("reazione1"));
+        $reazione2 = trim($request->get("reazione2"));
+
+        if (strlen($nome_sito) < 2 || strlen($indirizzo_sito) < 3 || strlen($reazione1) < 3 || strlen($reazione2) < 3) {
+            return "errore nei campi di validazione";
+        }
+
+
+        DB::table('sito')
+            ->insert([
+                "Nome_sito" => $nome_sito,
+                "Indirizzo_sito" => $indirizzo_sito,
+                "Reazione1" => $reazione1,
+                "Reazione2" => $reazione2,
+            ]);
+
+        return "okay";
+    }
+
+    public function existSiti(Request $request)
+    {
+        $email = DB::table('sito')
+            ->where('Nome_sito', '=', trim($request->nome_sito))
+            ->get();
+
+        if(count($email) > 0){
+            return "true";
+        }
+
+        return "false";
+    }
 
     public function viewData(Request $request)
     {

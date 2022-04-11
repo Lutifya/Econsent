@@ -69,7 +69,9 @@ Route::group((['prefix' => 'user']), function(){
         Route::middleware(['role:admin'])->group(function(){
             Route::get('/', [SitiController::class, 'index'])->name('siti');
             Route::get('getAllSiti', [SitiController::class, 'getAllSiti']);
+            Route::post('addSito', [SitiController::class,'addSito']);
             Route::post('viewData', [SitiController::class, 'viewData']);
+            Route::post('existSiti', [SitiController::class, 'existSiti']);
         });
     });
 

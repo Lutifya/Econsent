@@ -73,7 +73,7 @@ $(function () {
                             '<div class="d-flex flex-column">' +
                             '<a href="' +
                             userView +
-                            '" class="user_name text-truncate"><span class="font-weight-bold">' +
+                            '/'+ full.id + '" class="user_name text-truncate"><span class="font-weight-bold">' +
                             $name +
                             '</span></a>' +
                             '<small class="emp_post text-muted">@' +

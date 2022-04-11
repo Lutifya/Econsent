@@ -207,53 +207,9 @@ $(function () {
                 }
             },
             initComplete: function () {
-                // Adding role filter once table initialized
-                this.api()
-                    .columns(3)
-                    .every(function () {
-                        var column = this;
-                        var select = $(
-                            '<select id="UserRole" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Seleziona Ruolo </option></select>'
-                        )
-                            .appendTo('.user_role')
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                                column.search(val ? '^' + val + '$' : '', true, false).draw();
-                            });
-
-                        column
-                            .data()
-                            .unique()
-                            .sort()
-                            .each(function (d, j) {
-                                select.append('<option value="' + d + '" class="text-capitalize">' + d + '</option>');
-                            });
-                    });
-                // Adding plan filter once table initialized
-                this.api()
-                    .columns(4)
-                    .every(function () {
-                        var column = this;
-                        var select = $(
-                            '<select id="UserPlan" class="form-control text-capitalize mb-md-0 mb-2"><option value=""> Seleziona Sito </option></select>'
-                        )
-                            .appendTo('.user_plan')
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                                column.search(val ? '^' + val + '$' : '', true, false).draw();
-                            });
-
-                        column
-                            .data()
-                            .unique()
-                            .sort()
-                            .each(function (d, j) {
-                                select.append('<option value="' + d + '" class="text-capitalize">' + d + '</option>');
-                            });
-                    });
                 // Adding status filter once table initialized
                 this.api()
-                    .columns(5)
+                    .columns(3)
                     .every(function () {
                         var column = this;
                         var select = $(
@@ -328,64 +284,43 @@ $(function () {
     $('.data-submit').on('click', function (e) {
         e.preventDefault();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        let indirizzo_sito = $('#indirizzo_sito');
+        let nome_sito = $('#nome_sito');
+        let reazione1 = $('#reazione1');
+        let reazione2 = $('#reazione2');
 
-        let cf = $('#cf');
-        let email = $('#email');
-        let username = $('#username');
-        let error_username = $('#error_username');
-        let error_cf = $('#error_cf');
-        let error_email = $('#error_email');
+        let error_indirizzo = $('#err_indirizzo');
+        let error_nome = $('#error_nome');
+        let error_reazione1 = $('#error_reazione1');
+        let error_reazione2 = $('#error_reazione2');
 
 
         let variabili = {
-            username : username.val(),
-            email : email.val(),
-            role : $('#role').val(),
-            Sito_appartenenza : $('#sito').val(),
-            CF : cf.val(),
+            nome_sito: nome_sito.val(),
+            indirizzo_sito: indirizzo_sito.val(),
+            reazione1: reazione1.val(),
+            reazione2: reazione2.val(),
         };
 
         let isValid = true;
-        if(!validateEmail(variabili.email)){
-            isValid = false;
-            email.addClass('errore_validazione');
-            error_email.css('display', 'block');
-        } else{
-            email.removeClass('errore_validazione');
-            error_email.css('display', 'none');
-        }
 
-        if(!variabili.username.length > 0){
-            isValid = false;
-            username.addClass('errore_validazione');
-            error_username.css('display', 'block');
-        } else{
-            username.removeClass('errore_validazione');
-            error_username.css('display', 'none');
-        }
-
-        if(variabili.CF.length !== 16){
-            isValid = false;
-            cf.addClass('errore_validazione');
-            error_cf.css('display', 'block');
-        } else{
-            cf.removeClass('errore_validazione');
-            error_cf.css('display', 'none');
-        }
+        isValid = validaCampi(variabili.nome_sito, nome_sito, error_nome) & validaCampi(variabili.indirizzo_sito, indirizzo_sito, error_indirizzo)
+            & validaCampi(variabili.reazione1, reazione1, error_reazione1) & validaCampi(variabili.reazione2, reazione2, error_reazione2);
 
 
-        if(isValid && !duplicate){
+        if (isValid && !duplicate) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             jQuery.ajax({
-                url: assetPath + 'user/addUser',
+                url: assetPath + 'siti/addSito',
                 method: 'POST',
                 data: variabili,
                 success: function (result) {
-                    if(result === "okay"){
+                    if (result === "okay") {
                         location.reload();
                     }
                 }
@@ -394,7 +329,7 @@ $(function () {
 
     });
 
-    $( "#email" ).keyup(function() {
+    $("#nome_sito").keyup(function () {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -402,20 +337,19 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'user/existEmail',
+            url: assetPath + 'siti/existSiti',
             method: 'POST',
             data: {
-                email: $('#email').val(),
+                nome_sito: $('#nome_sito').val(),
                 // type: jQuery('#type').val(),
                 // price: jQuery('#price').val()
             },
             success: function (result) {
                 let error_duplicate = $('#error_duplicate');
-                if(result==="true"){
+                if (result === "true") {
                     duplicate = true;
                     error_duplicate.css('display', 'block');
-                }
-                else{
+                } else {
                     duplicate = false;
                     error_duplicate.css('display', 'none');
                 }
@@ -432,7 +366,7 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'user/changeState/'+ $(this).attr('data-id'),
+            url: assetPath + 'user/changeState/' + $(this).attr('data-id'),
             method: 'GET',
             data: {
                 // name: jQuery('#name').val(),
@@ -440,7 +374,7 @@ $(function () {
                 // price: jQuery('#price').val()
             },
             success: function (result) {
-                if(result === "okay"){
+                if (result === "okay") {
                     location.reload();
                 }
             }
@@ -457,5 +391,19 @@ const validateEmail = (email) => {
         .match(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
+};
+
+const validaCampi = (variabile, puntatore, error_puntatore) => {
+    let isValid = true;
+
+    if (!variabile.length > 0) {
+        isValid = false;
+        puntatore.addClass('errore_validazione');
+        error_puntatore.css('display', 'block');
+    } else {
+        puntatore.removeClass('errore_validazione');
+        error_puntatore.css('display', 'none');
+    }
+    return isValid;
 };
 
