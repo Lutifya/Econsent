@@ -60,8 +60,8 @@ class SitiController extends Controller
                 'Nome_sito as username',
                 'indirizzo_sito',
                 'Attivo as status'])
-            ->where('indirizzo_sito','like', "%$searchValue%")
-            ->orWhere('Nome_sito','like', "%$searchValue%")
+            ->where('indirizzo_sito', 'like', "%$searchValue%")
+            ->orWhere('Nome_sito', 'like', "%$searchValue%")
             ->offset($start)
             ->limit($length)
             ->get();
@@ -96,13 +96,156 @@ class SitiController extends Controller
         return "okay";
     }
 
+    public function aggiungiNuovoDocumento(Request $request, $id)
+    {
+        $siti = DB::table('sito')
+            ->where('id', '=', $id)
+            ->get();
+
+        if (count($siti) <= 0) {
+            abort(404);
+        }
+//        $request->file('Contenuto')->getContent()
+//        DB::table('documento')
+//            ->insert([
+//                'Nome_documento' => $request->Nome_documento,
+//                'Data_inserimento' => now(),
+//                'contenuto' => now()
+//            ]);
+    }
+
+    public function changeStateDocument(Request $request, $idSito)
+    {
+        $obj = DB::table('documento_sito')
+            ->where('id_sito', '=', $idSito)
+            ->where('id_documento', '=', $request->id_documento);
+
+        $update = clone($obj);
+        $obj = $obj->get();
+
+        if (count($obj) <= 0) {
+            return "Not found";
+        } else {
+            $valore = $obj[0]->Attivo === 2 ? 3 : 2;
+            $update->update([
+                'Attivo' => $valore
+            ]);
+        }
+        return "okay";
+    }
+
+    public function siti_view($id)
+    {
+        $pageConfigs = ['pageHeader' => false];
+
+        $sito = DB::table('sito')
+            ->where('id', '=', $id)
+            ->get();
+
+//        $documenti = DB::table('documento')
+//            ->leftJoin('documento_sito', 'documento.ID_documento', '=', 'documento_sito.id_documento')
+//            ->where('documento_sito.id_documento', 'IS', NULL)
+//            ->get();
+
+
+        $documenti = DB::select(DB::raw("select * from documento where documento.ID_documento not in ("
+            . "select documento.ID_documento from documento inner join documento_sito on documento.ID_documento = documento_sito.id_documento "
+            . "where documento_sito.id_sito = :somevariable)"), array(
+            'somevariable' => $id,
+        ));
+
+
+//        $results = DB::select( DB::raw("SELECT * FROM some_table WHERE some_col = :somevariable"), array(
+//            'somevariable' => $someVariable,
+//        ));
+
+
+        if (count($sito) <= 0) {
+            return "Not found";
+        }
+
+        return view('content.pages.siti-edit', [
+            'pageConfigs' => $pageConfigs,
+            'sito' => $sito[0],
+            'documenti' => $documenti
+        ]);
+    }
+
+    public function saveModify(Request $request, $id)
+    {
+        $sito = DB::table('sito')
+            ->where('id', '=', $id);
+
+        $check = $sito->get();
+
+        if (count($check) <= 0) {
+            return "Not found";
+        }
+        $sito->update([
+            "indirizzo_sito" => trim($request->get("indirizzo_sito")),
+            "Nome_sito" => trim($request->get("Nome_sito")),
+            "Attivo" => trim($request->get("Attivo")),
+        ]);
+
+        return "okay";
+    }
+
+    public function getAllDocument(Request $request, $id)
+    {
+
+        $start = $request->get('start') !== null ? $request->get('start') : 0;
+        $length = $request->get('length') !== null ? $request->get('length') : 50;
+        $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
+
+        $dato = DB::table('documento_sito')
+            ->select([
+                'documento.ID_documento',
+                'Nome_documento as full_name',
+                DB::raw("'' as responsive_id"),
+                'Data_inserimento as username',
+                'Attivo as status'])
+            ->join('documento', 'documento.ID_documento', 'documento_sito.id_documento')
+            ->where('id_sito', '=', $id)
+            ->where(function ($q) use ($searchValue) {
+                $q->where('Nome_documento', 'like', "%$searchValue%");
+            })
+            ->offset($start)
+            ->limit($length)
+            ->get();
+
+        $recordsTotal = count($dato);
+
+        return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
+
+    }
+
+
+    public function changeState(Request $request, $id)
+    {
+        $obj = DB::table('sito')
+            ->where('id', '=', $id);
+
+        $update = clone($obj);
+        $obj = $obj->get();
+
+        if (count($obj) <= 0) {
+            return "Not found";
+        } else {
+            $valore = $obj[0]->Attivo === 2 ? 3 : 2;
+            $update->update([
+                'Attivo' => $valore
+            ]);
+        }
+        return "okay";
+    }
+
     public function existSiti(Request $request)
     {
         $email = DB::table('sito')
             ->where('Nome_sito', '=', trim($request->nome_sito))
             ->get();
 
-        if(count($email) > 0){
+        if (count($email) > 0) {
             return "true";
         }
 

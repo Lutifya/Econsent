@@ -10,7 +10,7 @@ $(function () {
             3: {title: 'Inattivo', class: 'badge-light-secondary'}
         };
     var assetPath = $('body').attr('data-asset-path'),
-        userView = assetPath + 'user/info',
+        userView = assetPath + 'siti/info',
         userEdit = assetPath + 'user/edit';
 
     // Users List datatable
@@ -71,7 +71,7 @@ $(function () {
                             '<div class="d-flex flex-column">' +
                             '<a href="' +
                             userView +
-                            '" class="user_name text-truncate"><span class="font-weight-bold">' +
+                            '/'+ full.id + '" class="user_name text-truncate"><span class="font-weight-bold">' +
                             $name +
                             '</span></a>' +
                             '<small class="emp_post text-muted">@' +
@@ -366,7 +366,7 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'user/changeState/' + $(this).attr('data-id'),
+            url: assetPath + 'siti/changeState/' + $(this).attr('data-id'),
             method: 'GET',
             data: {
                 // name: jQuery('#name').val(),
