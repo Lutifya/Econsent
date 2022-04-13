@@ -81,39 +81,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="username">Indirizzo Sito</label>
+                                        <label for="username">Nome Documento</label>
                                         <input
                                                 type="text"
                                                 class="form-control"
                                                 placeholder="Indirizzo Sito"
-                                                value="{{$sito->indirizzo_sito}}"
-                                                name="indirizzo_sito"
-                                                id="indirizzo_sito"
+                                                value="{{$documento->Nome_documento}}"
+                                                name="nome_documento"
+                                                id="nome_documento"
                                         />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="email">Nome Sito</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Nome sito"
-                                                value="{{$sito->Nome_sito}}"
-                                                name="nome_sito"
-                                                id="nome_sito"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="status">Stato</label>
-                                        <select class="form-control" id="status">
-                                            <option value="2" {{$sito->Attivo === 2 ? 'selected' : ''}}>Attivo</option>
-                                            {{--                    <option>Blocked</option>--}}
-                                            <option value="3" {{$sito->Attivo === 3 ? 'selected' : ''}}>Disattivato
-                                            </option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex flex-sm-row flex-column mt-2">
@@ -129,7 +105,7 @@
                         <!-- users edit account form ends -->
                     </div>
                     <!-- Account Tab ends -->
-                    <input type="hidden" id="id" name="id" value="{{$sito->id}}">
+                    <input type="hidden" id="id" name="id" value="{{$documento->ID_documento}}">
 
                     <div class="card mt-2">
                         <div class="card-datatable table-responsive pt-0">
@@ -154,20 +130,20 @@
                     <div class="add-new-user modal-content pt-0">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
                         <div class="modal-header mb-1">
-                            <h5 class="modal-title" id="exampleModalLabel">Aggiungi Documento</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Aggiungi Dizionario</h5>
                         </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                         data-bs-target="#home" type="button" role="tab" aria-controls="home"
-                                        aria-selected="true">Nuovo Documento
+                                        aria-selected="true">Nuovo Dizionario
                                 </button>
                             </li>
-                            @if(count($documenti) > 0)
+                            @if(count($dizionari) > 0)
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                                             data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                            aria-selected="false">Seleziona Documento
+                                            aria-selected="false">Seleziona Dizionario
                                     </button>
                                 </li>
                             @endif
@@ -178,16 +154,17 @@
 
                                     <div class="modal-body flex-grow-1">
                                         <div class="form-group mb-2">
-                                            @if(count($documenti) <= 0)
+                                            @if(count($dizionari) <= 0)
                                                 <label class="form-label" id="error_duplicate" for="email"
-                                                       style="color: red;">Nessun nuovo documenti disponibile, crealo
+                                                       style="color: red;">Nessun nuovo dizionario disponibile, crealo
                                                     ora!</label>
                                             @endif
                                         </div>
-                                        <form action="{{url('siti/aggiungiNuovoDocumento')}}/{{$sito->id}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{url('documenti/aggiungiNuovoDizionario')}}/{{$documento->ID_documento}}"
+                                              method="POST" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <div class="form-group mb-2">
-                                                <label class="form-label" for="user-plan">Seleziona Documento</label>
+                                                <label class="form-label" for="user-plan">Seleziona Dizionario</label>
                                                 <input type="file" name="Contenuto" id="fileNew" class="form-control">
                                             </div>
 
@@ -197,7 +174,8 @@
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">
                                                 Cancel
                                             </button>
-                                            <input type="hidden" id="SitoID" name="sitoid" value="{{$sito->id}}">
+                                            <input type="hidden" id="SitoID" name="sitoid"
+                                                   value="{{$documento->ID_documento}}">
                                         </form>
 
                                     </div>
@@ -214,12 +192,14 @@
                                     <div class="form-group mb-2">
                                         <label class="form-label" for="user-plan">Seleziona Documento</label>
                                         <select id="sito" class="form-control">
-                                            @foreach($documenti as $documento)
-                                                <option value="{{$documento->ID_documento}}">{{$documento->Nome_documento}}</option>
+                                            @foreach($dizionari as $dizionario)
+                                                <option value="{{$dizionario->ID_dizionario}}">{{$dizionario->Nome_dizionario}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <button type="submit" id="documentSubmit" class="btn btn-primary mr-1 data-submit">Aggiungi</button>
+                                    <button type="submit" id="documentSubmit" class="btn btn-primary mr-1 data-submit">
+                                        Aggiungi
+                                    </button>
                                     <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel
                                     </button>
                                 </div>
@@ -255,6 +235,6 @@
 
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/pages/app-siti-edit.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/pages/app-documenti-edit.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/components/components-navs.js')) }}"></script>
 @endsection

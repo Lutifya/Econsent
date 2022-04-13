@@ -1,24 +1,5 @@
-/*=========================================================================================
-    File Name: app-user-edit.js
-    Description: User Edit page
-    --------------------------------------------------------------------------------------
-    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
 $(function () {
     'use strict';
-    var dtInvoiceTable = $('.invoice-list-table');
-    var changePicture = $('#change-picture'),
-        userAvatar = $('.user-avatar'),
-        languageSelect = $('#users-language-select2'),
-        form = $('.form-validate'),
-        birthdayPickr = $('.birthdate-picker');
-
-    var assetPath = $('body').attr('data-asset-path'),
-        userView = assetPath + 'user/info',
-        userEdit = assetPath + 'documenti/info';
-
 
     var dtUserTable = $('.user-list-table'),
         newUserSidebar = $('.new-user-modal'),
@@ -28,68 +9,14 @@ $(function () {
             2: {title: 'Attivo', class: 'badge-light-success'},
             3: {title: 'Inattivo', class: 'badge-light-secondary'}
         };
+    var assetPath = $('body').attr('data-asset-path'),
+        userView = assetPath + 'documenti/info',
+        userEdit = assetPath + 'user/edit';
 
-    // Validation
-    if (form.length) {
-        $(form).each(function () {
-            var $this = $(this);
-            $this.validate({
-                submitHandler: function (form, event) {
-                    event.preventDefault();
-
-                    let variabili = {
-                        indirizzo_sito : $('#indirizzo_sito').val(),
-                        Nome_sito : $('#nome_sito').val(),
-                        Attivo : $('#status').val(),
-                    };
-
-                    if( variabili.indirizzo_sito.length > 0 &&
-                        variabili.Nome_sito.length > 0
-                    ){
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-
-                        jQuery.ajax({
-                            url: assetPath + 'siti/saveInfo/'+ $('#id').val(),
-                            method: 'POST',
-                            data: variabili,
-                            success: function (result) {
-                                if(result === "okay"){
-                                    window.location.assign(assetPath + 'siti/');
-                                }
-                            }
-                        });
-                    }
-                },
-                rules: {
-                    indirizzo_sito: {
-                        required: true
-                    },
-                    nome_sito: {
-                        required: true
-                    },
-                    // dob: {
-                    //     required: true,
-                    //     step: false
-                    // },
-                    cf: {
-                        required: true
-                    }
-                }
-            });
-
-        });
-
-
-
-    }
-
+    // Users List datatable
     if (dtUserTable.length) {
         dtUserTable.DataTable({
-            ajax: assetPath + 'siti/getAllDocument/'+ $('#id').val() + '/',
+            ajax: assetPath + 'documenti/getAllDocument/',
             serverSide: true,
             // ajax: assetPath + 'data/user-list.json', // JSON file to add data
             columns: [
@@ -97,7 +24,6 @@ $(function () {
                 {data: 'responsive_id'},
                 {data: 'full_name'},
                 {data: 'username'},
-                {data: ''},
                 {data: ''}
             ],
             columnDefs: [
@@ -144,22 +70,6 @@ $(function () {
                         return $row_output;
                     }
                 },
-
-                {
-                    // User Status
-                    targets: 3,
-                    render: function (data, type, full, meta) {
-                        var $status = full['status'];
-
-                        return (
-                            '<span class="badge badge-pill ' +
-                            statusObj[$status].class +
-                            '" text-capitalized>' +
-                            statusObj[$status].title +
-                            '</span>'
-                        );
-                    }
-                },
                 {
                     // Actions
                     targets: -1,
@@ -172,19 +82,19 @@ $(function () {
                             feather.icons['more-vertical'].toSvg({class: 'font-small-4'}) +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right">' +
-                            // '<a href="' +
-                            // userView +
-                            // '/' + full.id + '" class="dropdown-item">' +
-                            // feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
-                            // 'Informazioni</a>' +
                             '<a href="' +
-                            userEdit +
+                            userView +
                             '/' + full.ID_documento + '" class="dropdown-item">' +
-                            feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
-                            'Modifica</a>' +
-                            '<a href="javascript:;" data-id="' + full.ID_documento + '" class="dropdown-item delete-record">' +
-                            feather.icons['trash-2'].toSvg({class: 'font-small-4 mr-50'}) +
-                            'Disattiva/Riattiva </a></div>' +
+                            feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
+                            'Informazioni</a>' +
+                            // '<a href="' +
+                            // userEdit +
+                            // '/' + full.id + '" class="dropdown-item">' +
+                            // feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
+                            // 'Modifica</a>' +
+                            // '<a href="javascript:;" data-id="' + full.ID_documento + '" class="dropdown-item delete-record">' +
+                            // feather.icons['trash-2'].toSvg({class: 'font-small-4 mr-50'}) +
+                            // 'Disattiva/Riattiva </a></div>' +
                             '</div>' +
                             '</div>'
                         );
@@ -255,9 +165,50 @@ $(function () {
         });
     }
 
-    $('#documentSubmit').click(function(e){
-        e.preventDefault();
+    // Check Validity
+    function checkValidity(el) {
+        if (el.validate().checkForm()) {
+            submitBtn.attr('disabled', false);
+        } else {
+            submitBtn.attr('disabled', true);
+        }
+    }
 
+    // Form Validation
+    if (newUserForm.length) {
+        newUserForm.validate({
+            errorClass: 'error',
+            rules: {
+                'user-fullname': {
+                    required: true
+                },
+                'user-name': {
+                    required: true
+                },
+                'user-email': {
+                    required: true
+                }
+            }
+        });
+
+        newUserForm.on('submit', function (e) {
+            var isValid = newUserForm.valid();
+            e.preventDefault();
+            if (isValid) {
+                newUserSidebar.modal('hide');
+            }
+        });
+    }
+
+    var duplicate = false;
+    // To initialize tooltip with body container
+    $('body').tooltip({
+        selector: '[data-toggle="tooltip"]',
+        container: 'body'
+    });
+
+
+    $("#nome_sito").keyup(function () {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -265,43 +216,73 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'siti/aggiungiDocumento/' + jQuery('#SitoID').val(),
+            url: assetPath + 'siti/existSiti',
             method: 'POST',
             data: {
-                id_documento: jQuery('#sito').val(),
+                nome_sito: $('#nome_sito').val(),
                 // type: jQuery('#type').val(),
                 // price: jQuery('#price').val()
             },
             success: function (result) {
-                if (result === "okay") {
-                    location.reload();
+                let error_duplicate = $('#error_duplicate');
+                if (result === "true") {
+                    duplicate = true;
+                    error_duplicate.css('display', 'block');
+                } else {
+                    duplicate = false;
+                    error_duplicate.css('display', 'none');
                 }
             }
         });
     });
 
-    $(document).on("click", '.delete-record', function () {
+    // $(document).on("click", '.delete-record', function () {
+    //
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+    //
+    //     jQuery.ajax({
+    //         url: assetPath + 'documenti/changeState/' + $(this).attr('data-id'),
+    //         method: 'GET',
+    //         data: {
+    //             // name: jQuery('#name').val(),
+    //             // type: jQuery('#type').val(),
+    //             // price: jQuery('#price').val()
+    //         },
+    //         success: function (result) {
+    //             if (result === "okay") {
+    //                 location.reload();
+    //             }
+    //         }
+    //     });
+    //
+    // });
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-        jQuery.ajax({
-            url: assetPath + 'siti/changeStateDocument/' + jQuery('#SitoID').val(),
-            method: 'POST',
-            data: {
-                id_documento: $(this).attr('data-id'),
-                // type: jQuery('#type').val(),
-                // price: jQuery('#price').val()
-            },
-            success: function (result) {
-                if (result === "okay") {
-                    location.reload();
-                }
-            }
-        });
-
-    });
 });
+
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
+
+const validaCampi = (variabile, puntatore, error_puntatore) => {
+    let isValid = true;
+
+    if (!variabile.length > 0) {
+        isValid = false;
+        puntatore.addClass('errore_validazione');
+        error_puntatore.css('display', 'block');
+    } else {
+        puntatore.removeClass('errore_validazione');
+        error_puntatore.css('display', 'none');
+    }
+    return isValid;
+};
+

@@ -17,7 +17,7 @@ $(function () {
 
     var assetPath = $('body').attr('data-asset-path'),
         userView = assetPath + 'user/info',
-        userEdit = assetPath + 'documenti/info';
+        userEdit = assetPath + 'user/edit';
 
 
     var dtUserTable = $('.user-list-table'),
@@ -38,13 +38,10 @@ $(function () {
                     event.preventDefault();
 
                     let variabili = {
-                        indirizzo_sito : $('#indirizzo_sito').val(),
-                        Nome_sito : $('#nome_sito').val(),
-                        Attivo : $('#status').val(),
+                        nome_documento : $('#nome_documento').val(),
                     };
 
-                    if( variabili.indirizzo_sito.length > 0 &&
-                        variabili.Nome_sito.length > 0
+                    if( variabili.nome_documento.length > 0
                     ){
                         $.ajaxSetup({
                             headers: {
@@ -53,12 +50,12 @@ $(function () {
                         });
 
                         jQuery.ajax({
-                            url: assetPath + 'siti/saveInfo/'+ $('#id').val(),
+                            url: assetPath + 'documenti/saveInfo/'+ $('#id').val(),
                             method: 'POST',
                             data: variabili,
                             success: function (result) {
                                 if(result === "okay"){
-                                    window.location.assign(assetPath + 'siti/');
+                                    window.location.assign(assetPath + 'documenti/');
                                 }
                             }
                         });
@@ -89,7 +86,7 @@ $(function () {
 
     if (dtUserTable.length) {
         dtUserTable.DataTable({
-            ajax: assetPath + 'siti/getAllDocument/'+ $('#id').val() + '/',
+            ajax: assetPath + 'documenti/getAllDizionari/'+ $('#id').val() + '/',
             serverSide: true,
             // ajax: assetPath + 'data/user-list.json', // JSON file to add data
             columns: [
@@ -144,7 +141,6 @@ $(function () {
                         return $row_output;
                     }
                 },
-
                 {
                     // User Status
                     targets: 3,
@@ -177,12 +173,12 @@ $(function () {
                             // '/' + full.id + '" class="dropdown-item">' +
                             // feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
                             // 'Informazioni</a>' +
-                            '<a href="' +
-                            userEdit +
-                            '/' + full.ID_documento + '" class="dropdown-item">' +
-                            feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
-                            'Modifica</a>' +
-                            '<a href="javascript:;" data-id="' + full.ID_documento + '" class="dropdown-item delete-record">' +
+                            // '<a href="' +
+                            // userEdit +
+                            // '/' + full.id + '" class="dropdown-item">' +
+                            // feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
+                            // 'Modifica</a>' +
+                            '<a href="javascript:;" data-id="' + full.id + '" class="dropdown-item delete-record">' +
                             feather.icons['trash-2'].toSvg({class: 'font-small-4 mr-50'}) +
                             'Disattiva/Riattiva </a></div>' +
                             '</div>' +
@@ -209,7 +205,7 @@ $(function () {
             // Buttons with Dropdown
             buttons: [
                 {
-                    text: 'Aggiungi un documento',
+                    text: 'Aggiungi un dizionario',
                     className: 'add-new btn btn-primary mt-50',
                     attr: {
                         'data-toggle': 'modal',
@@ -265,10 +261,10 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'siti/aggiungiDocumento/' + jQuery('#SitoID').val(),
+            url: assetPath + 'documenti/aggiungiDizionario/' + jQuery('#SitoID').val(),
             method: 'POST',
             data: {
-                id_documento: jQuery('#sito').val(),
+                id_dizionario: jQuery('#sito').val(),
                 // type: jQuery('#type').val(),
                 // price: jQuery('#price').val()
             },
@@ -289,10 +285,10 @@ $(function () {
         });
 
         jQuery.ajax({
-            url: assetPath + 'siti/changeStateDocument/' + jQuery('#SitoID').val(),
+            url: assetPath + 'documenti/changeState/' + jQuery('#SitoID').val(),
             method: 'POST',
             data: {
-                id_documento: $(this).attr('data-id'),
+                id_dizionario: $(this).attr('data-id'),
                 // type: jQuery('#type').val(),
                 // price: jQuery('#price').val()
             },

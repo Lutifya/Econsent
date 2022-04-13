@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentiController;
 use App\Http\Controllers\SitiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::middleware(['auth', 'checkBanned'])->group(function () {
 
-    Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::group((['prefix' => 'user']), function () {
 
@@ -69,26 +70,32 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
             Route::get('/', [SitiController::class, 'index'])->name('siti');
             Route::get('getAllSiti', [SitiController::class, 'getAllSiti']);
             Route::post('addSito', [SitiController::class, 'addSito']);
-            Route::post('viewData', [SitiController::class, 'viewData']);
+            Route::post('viewData', [SitiController::class, 'viewData'])->name('infoData');
             Route::post('existSiti', [SitiController::class, 'existSiti']);
             Route::post('saveInfo/{id}', [SitiController::class, 'saveModify']);
             Route::get('info/{id}', [SitiController::class, 'siti_view']);
             Route::get('changeState/{id}', [SitiController::class, 'changeState']);
             Route::get('getAllDocument/{id}', [SitiController::class, 'getAllDocument']);
             Route::post('aggiungiNuovoDocumento/{idSito}', [SitiController::class, 'aggiungiNuovoDocumento']);
+            Route::post('aggiungiDocumento/{idSito}', [SitiController::class, 'aggiungiDocumento']);
             Route::post('changeStateDocument/{idSito}', [SitiController::class, 'changeStateDocument']);
         });
     });
 
     Route::group((['prefix' => 'documenti']), function () {
         Route::middleware(['role:admin'])->group(function () {
-            Route::get('/', [SitiController::class, 'index'])->name('documenti');
-            Route::get('getAllSiti', [SitiController::class, 'getAllSiti']);
-            Route::post('addSito', [SitiController::class, 'addSito']);
-            Route::post('viewData', [SitiController::class, 'viewData']);
-            Route::post('existSiti', [SitiController::class, 'existSiti']);
-            Route::get('info/{id}', [UserController::class, 'user_view']);
-            Route::get('changeState/{id}', [SitiController::class, 'changeState']);
+            Route::get('/', [DocumentiController::class, 'index'])->name('documenti');
+            Route::get('getAllDocument', [DocumentiController::class, 'getAllDocument']);
+            Route::post('addSito', [DocumentiController::class, 'addSito']);
+            Route::post('viewData', [DocumentiController::class, 'viewData'])->name('infoData');
+            Route::post('existSiti', [DocumentiController::class, 'existSiti']);
+            Route::post('saveInfo/{id}', [DocumentiController::class, 'saveModify']);
+            Route::get('info/{id}', [DocumentiController::class, 'siti_view']);
+            Route::post('changeState/{id}', [DocumentiController::class, 'changeState']);
+            Route::get('getAllDizionari/{id}', [DocumentiController::class, 'getAllDizionari']);
+            Route::post('aggiungiNuovoDocumento', [DocumentiController::class, 'aggiungiNuovoDocumento']);
+            Route::post('aggiungiNuovoDizionario/{idSito}', [DocumentiController::class, 'aggiungiNuovoDizionario']);
+            Route::post('aggiungiDizionario/{idSito}', [DocumentiController::class, 'aggiungiDizionario']);
         });
     });
 

@@ -104,6 +104,8 @@
     "/js/scripts/pages/app-calendar-events.js": "/js/scripts/pages/app-calendar-events.js",
     "/js/scripts/pages/app-calendar.js": "/js/scripts/pages/app-calendar.js",
     "/js/scripts/pages/app-chat.js": "/js/scripts/pages/app-chat.js",
+    "/js/scripts/pages/app-documenti-edit.js": "/js/scripts/pages/app-documenti-edit.js",
+    "/js/scripts/pages/app-documenti-list.js": "/js/scripts/pages/app-documenti-list.js",
     "/js/scripts/pages/app-ecommerce-checkout.js": "/js/scripts/pages/app-ecommerce-checkout.js",
     "/js/scripts/pages/app-ecommerce-details.js": "/js/scripts/pages/app-ecommerce-details.js",
     "/js/scripts/pages/app-ecommerce-wishlist.js": "/js/scripts/pages/app-ecommerce-wishlist.js",

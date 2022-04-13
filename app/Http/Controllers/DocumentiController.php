@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Psr\SimpleCache\InvalidArgumentException;
 
-class SitiController extends Controller
+class DocumentiController extends Controller
 {
     //Nomi dei campi da visualizzare a colpo d'occhio in pagina
     private array $nomiCampi = [
@@ -38,7 +38,7 @@ class SitiController extends Controller
             }
         }
 
-        return view('content.pages.siti', [
+        return view('content.pages.documenti', [
             'breadcrumbs' => $breadcrumbs,
             'header_dati' => $this->nomiCampi,
             'dati' => $datiTabella,
@@ -46,22 +46,19 @@ class SitiController extends Controller
         ]);
     }
 
-    public function getAllSiti(Request $request): array
+    public function getAllDocument(Request $request): array
     {
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
         $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
 
-        $dato = DB::table('sito')
+        $dato = DB::table('documento')
             ->select([
-                'id',
-                'Nome_sito as full_name',
+                'documento.ID_documento',
+                'Nome_documento as full_name',
                 DB::raw("'' as responsive_id"),
-                'Nome_sito as username',
-                'indirizzo_sito',
-                'Attivo as status'])
-            ->where('indirizzo_sito', 'like', "%$searchValue%")
-            ->orWhere('Nome_sito', 'like', "%$searchValue%")
+                'Data_inserimento as username'])
+            ->where('Nome_documento', 'like', "%$searchValue%")
             ->offset($start)
             ->limit($length)
             ->get();
@@ -96,81 +93,72 @@ class SitiController extends Controller
         return "okay";
     }
 
-    public function aggiungiDocumento(Request $request, $id)
+    public function aggiungiDizionario(Request $request, $id)
     {
-        $siti = DB::table('sito')
-            ->where('id', '=', $id)
+        $documento = DB::table('documento')
+            ->where('ID_documento', '=', $id)
             ->get();
 
-        if (count($siti) <= 0) {
+        if (count($documento) <= 0) {
             abort(404);
         }
 
-        DB::table('documento_sito')
+        DB::table('dizionario_documento')
             ->insert([
-                'id_sito' => $id,
-                'id_documento' => $request->id_documento
+                'id_documento' => $id,
+                'id_dizionario' => $request->id_dizionario
             ]);
 
         return "okay";
     }
 
-
-    public function aggiungiNuovoDocumento(Request $request, $id)
+    public function aggiungiNuovoDocumento(Request $request)
     {
-        $siti = DB::table('sito')
-            ->where('id', '=', $id)
-            ->get();
-
-        if (count($siti) <= 0 && $request->file('Contenuto') === null) {
+        if ($request->file('Contenuto') === null) {
             abort(404);
         }
 
         $hex = unpack("H*", file_get_contents($request->file('Contenuto')->getRealPath()));
         $hex = current($hex);
 
-        $idDocumento = DB::table('documento')
-            ->insertGetId([
+        DB::table('documento')
+            ->insert([
                 'Nome_documento' => $request->file('Contenuto')->getClientOriginalName(),
                 'Data_inserimento' => now(),
                 'contenuto' => $hex
             ]);
+        return redirect('/documenti');
 
-        DB::table('documento_sito')
-            ->insert([
-                'id_sito' => $id,
-                'id_documento' => $idDocumento
-            ]);
-
-        return redirect('/siti/info/'.$id);
     }
 
-    public function changeStateDocument(Request $request, $idSito)
+    public function aggiungiNuovoDizionario(Request $request, $id)
     {
-        $obj = DB::table('documento_sito')
-            ->where('id_sito', '=', $idSito)
-            ->where('id_documento', '=', $request->id_documento);
-
-        $update = clone($obj);
-        $obj = $obj->get();
-
-        if (count($obj) <= 0) {
-            return "Not found";
-        } else {
-            $valore = $obj[0]->Attivo === 2 ? 3 : 2;
-            $update->update([
-                'Attivo' => $valore
-            ]);
+        if ($request->file('Contenuto') === null) {
+            abort(404);
         }
-        return "okay";
+
+        $idDizionario = DB::table('dizionario')
+            ->insertGetId([
+                'Nome_dizionario' => $request->file('Contenuto')->getClientOriginalName(),
+                'Data_inserimento' => now(),
+                'contenuto' => $request->file('Contenuto')->getContent()
+            ]);
+
+        DB::table('dizionario_documento')
+            ->insert([
+                'id_dizionario' => $idDizionario,
+                'id_documento' => $id
+            ]);
+
+        return redirect('/documenti/info/'.$id);
     }
 
     public function siti_view($id)
     {
         $pageConfigs = ['pageHeader' => false];
 
-        $sito = DB::table('sito')
-            ->where('id', '=', $id)
+        $documento = DB::table('documento')
+            ->where('ID_documento', '=', $id)
             ->get();
 
 //        $documenti = DB::table('documento')
@@ -179,9 +167,9 @@ class SitiController extends Controller
 //            ->get();
 
 
-        $documenti = DB::select(DB::raw("select * from documento where documento.ID_documento not in ("
-            . "select documento.ID_documento from documento inner join documento_sito on documento.ID_documento = documento_sito.id_documento "
-            . "where documento_sito.id_sito = :somevariable)"), array(
+        $dizionari = DB::select(DB::raw("select * from dizionario where dizionario.ID_dizionario not in ("
+            . "select dizionario.ID_dizionario from dizionario inner join dizionario_documento on dizionario.ID_dizionario = dizionario_documento.id_dizionario "
+            . "where dizionario_documento.id_documento = :somevariable)"), array(
             'somevariable' => $id,
         ));
 
@@ -191,54 +179,54 @@ class SitiController extends Controller
 //        ));
 
 
-        if (count($sito) <= 0) {
+        if (count($documento) <= 0) {
             return "Not found";
         }
 
-        return view('content.pages.siti-edit', [
+        return view('content.pages.documenti-edit', [
             'pageConfigs' => $pageConfigs,
-            'sito' => $sito[0],
-            'documenti' => $documenti
+            'documento' => $documento[0],
+            'dizionari' => $dizionari
         ]);
     }
 
     public function saveModify(Request $request, $id)
     {
-        $sito = DB::table('sito')
-            ->where('id', '=', $id);
+        $documento = DB::table('documento')
+            ->where('ID_documento', '=', $id);
 
-        $check = $sito->get();
+        $check = $documento->get();
 
         if (count($check) <= 0) {
             return "Not found";
         }
-        $sito->update([
-            "indirizzo_sito" => trim($request->get("indirizzo_sito")),
-            "Nome_sito" => trim($request->get("Nome_sito")),
-            "Attivo" => trim($request->get("Attivo")),
+        $documento->update([
+            "Nome_documento" => trim($request->get("nome_documento"))
         ]);
 
         return "okay";
     }
 
-    public function getAllDocument(Request $request, $id)
+
+
+    public function getAllDizionari(Request $request, $id)
     {
 
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
         $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
 
-        $dato = DB::table('documento_sito')
+        $dato = DB::table('dizionario_documento')
             ->select([
-                'documento.ID_documento',
-                'Nome_documento as full_name',
+                'dizionario.ID_dizionario as id',
+                'Nome_dizionario as full_name',
                 DB::raw("'' as responsive_id"),
                 'Data_inserimento as username',
                 'Attivo as status'])
-            ->join('documento', 'documento.ID_documento', 'documento_sito.id_documento')
-            ->where('id_sito', '=', $id)
+            ->join('dizionario', 'dizionario.ID_dizionario', '=', 'dizionario_documento.id_dizionario')
+            ->where('id_documento', '=', $id)
             ->where(function ($q) use ($searchValue) {
-                $q->where('Nome_documento', 'like', "%$searchValue%");
+                $q->where('Nome_dizionario', 'like', "%$searchValue%");
             })
             ->offset($start)
             ->limit($length)
@@ -253,8 +241,9 @@ class SitiController extends Controller
 
     public function changeState(Request $request, $id)
     {
-        $obj = DB::table('sito')
-            ->where('id', '=', $id);
+        $obj = DB::table('dizionario_documento')
+            ->where('id_documento', '=', $id)
+            ->where('id_dizionario', '=', $request->id_dizionario);
 
         $update = clone($obj);
         $obj = $obj->get();

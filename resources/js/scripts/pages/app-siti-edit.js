@@ -17,7 +17,7 @@ $(function () {
 
     var assetPath = $('body').attr('data-asset-path'),
         userView = assetPath + 'user/info',
-        userEdit = assetPath + 'user/edit';
+        userEdit = assetPath + 'documenti/info';
 
 
     var dtUserTable = $('.user-list-table'),
@@ -177,11 +177,11 @@ $(function () {
                             // '/' + full.id + '" class="dropdown-item">' +
                             // feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
                             // 'Informazioni</a>' +
-                            // '<a href="' +
-                            // userEdit +
-                            // '/' + full.id + '" class="dropdown-item">' +
-                            // feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
-                            // 'Modifica</a>' +
+                            '<a href="' +
+                            userEdit +
+                            '/' + full.ID_documento + '" class="dropdown-item">' +
+                            feather.icons['archive'].toSvg({class: 'font-small-4 mr-50'}) +
+                            'Modifica</a>' +
                             '<a href="javascript:;" data-id="' + full.ID_documento + '" class="dropdown-item delete-record">' +
                             feather.icons['trash-2'].toSvg({class: 'font-small-4 mr-50'}) +
                             'Disattiva/Riattiva </a></div>' +
@@ -255,30 +255,30 @@ $(function () {
         });
     }
 
-    // $('#documentNewSubmit').click(function(e){
-    //     e.preventDefault();
-    //
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         }
-    //     });
-    //
-    //     jQuery.ajax({
-    //         url: assetPath + 'siti/aggiungiNuovoDocumento/' + jQuery('#SitoID').val(),
-    //         method: 'POST',
-    //         data: {
-    //             Contenuto: jQuery('#fileNew').val(),
-    //             // type: jQuery('#type').val(),
-    //             // price: jQuery('#price').val()
-    //         },
-    //         success: function (result) {
-    //             if (result === "okay") {
-    //                 location.reload();
-    //             }
-    //         }
-    //     });
-    // });
+    $('#documentSubmit').click(function(e){
+        e.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        jQuery.ajax({
+            url: assetPath + 'siti/aggiungiDocumento/' + jQuery('#SitoID').val(),
+            method: 'POST',
+            data: {
+                id_documento: jQuery('#sito').val(),
+                // type: jQuery('#type').val(),
+                // price: jQuery('#price').val()
+            },
+            success: function (result) {
+                if (result === "okay") {
+                    location.reload();
+                }
+            }
+        });
+    });
 
     $(document).on("click", '.delete-record', function () {
 
