@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BuilderController;
+use App\Http\Controllers\CompilazioniController;
 use App\Http\Controllers\DocumentiController;
 use App\Http\Controllers\SitiController;
 use App\Http\Controllers\UserController;
@@ -99,6 +101,16 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
         });
     });
 
+    Route::group((['prefix' => 'compilazioni']), function () {
+        Route::get('/', [DocumentiController::class, 'index'])->name('documenti');
+        Route::get('getAllCompilazioni', [CompilazioniController::class, 'getALlCompilazioni']);
+    });
+
+    Route::group((['prefix' => 'Builder']), function () {
+        Route::get('/getDizionari/{id}', [BuilderController::class, 'getDizionari']);
+        Route::get('/{id}/{education}', [BuilderController::class, 'index'])->name('builder');
+
+    });
 
     /* Route Apps */
     Route::group(['prefix' => 'app'], function () {

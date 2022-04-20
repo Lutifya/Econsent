@@ -103,7 +103,6 @@ class UserController extends Controller
             "email" => trim($request->get("email")),
             "genere" => trim(($genere)),
             "data_nascita" => $request->get("data_nascita"),
-            "Sito_appartenenza" => trim($request->get("Sito_appartenenza")),
             "CF" => trim($request->get("CF")),
         ]);
 
@@ -187,6 +186,7 @@ class UserController extends Controller
             ->get();
 
         $siti = DB::table('sito')
+            ->where('Nome_sito', '=', Auth::user()->Sito_appartenenza)
             ->get();
 
         return view('/content/apps/user/app-user-profile', [

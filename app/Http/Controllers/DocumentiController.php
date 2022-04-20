@@ -121,11 +121,13 @@ class DocumentiController extends Controller
         $hex = unpack("H*", file_get_contents($request->file('Contenuto')->getRealPath()));
         $hex = current($hex);
 
+        $estensione = $request->file('Contenuto')->extension();
         DB::table('documento')
             ->insert([
                 'Nome_documento' => $request->file('Contenuto')->getClientOriginalName(),
                 'Data_inserimento' => now(),
-                'contenuto' => $hex
+                'contenuto' => $hex,
+                'Estensione' => $estensione
             ]);
         return redirect('/documenti');
 
@@ -150,7 +152,7 @@ class DocumentiController extends Controller
                 'id_documento' => $id
             ]);
 
-        return redirect('/documenti/info/'.$id);
+        return redirect('/documenti/info/' . $id);
     }
 
     public function siti_view($id)
@@ -206,7 +208,6 @@ class DocumentiController extends Controller
 
         return "okay";
     }
-
 
 
     public function getAllDizionari(Request $request, $id)
