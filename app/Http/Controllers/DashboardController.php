@@ -15,6 +15,7 @@ class DashboardController extends Controller
             ->join('documento_sito', 'documento.ID_documento', '=', 'documento_sito.id_documento')
             ->join('sito', 'sito.id', '=', 'documento_sito.id_sito')
             ->where('sito.Nome_sito', '=', Auth::user()->Sito_appartenenza)
+            ->where('documento_sito.Attivo', '=', '2')
             ->get();
 
         $view = view('/content/dashboard/dashboard-ecommerce', ['pageConfigs' => $pageConfigs]);

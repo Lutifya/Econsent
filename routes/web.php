@@ -108,6 +108,7 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
 
     Route::group((['prefix' => 'Builder']), function () {
         Route::get('/getDizionari/{id}', [BuilderController::class, 'getDizionari']);
+        Route::get('/getDoc/{id}', [BuilderController::class, 'getDoc']);
         Route::get('/{id}/{education}', [BuilderController::class, 'index'])->name('builder');
 
     });

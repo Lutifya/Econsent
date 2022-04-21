@@ -17,12 +17,14 @@ function buildpage() {
     var urlParameter = getUrlParameter('redirectTo'); //URLPARAMETER = NOME DEL FILE
     // var urlParameter = getUrlParameter('id'); //URLPARAMETER = NOME DEL FILE
 
-    if (EstensioneDocumento.match(/\.txt$/)) {               //CONTROLLA SE è TXT o HTML
-        text = txtToText(urlParameter); //txtToText prende il testo dal database e lo divide in paragrafi (/n separatore)
+    if (EstensioneDocumento === "txt") {               //CONTROLLA SE è TXT o HTML
+        text = txtToText(); //txtToText prende il testo dal database e lo divide in paragrafi (/n separatore)
+        // console.log(text);
         text = textToParagraph(text);
-    } else if (EstensioneDocumento.match(/\.html$/)) {
-        text = htmlToText(urlParameter);
+    } else if (EstensioneDocumento === "html") {
+        text = htmlToText();
     }
+
     text.createHeader();
 
     for (section of text.sections) {

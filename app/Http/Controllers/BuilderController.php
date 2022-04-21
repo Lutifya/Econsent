@@ -29,6 +29,26 @@ class BuilderController extends Controller
         ]);
     }
 
+    public function getDoc(Request $request, $id){
+        $documento = DB::table('documento')
+            ->where('ID_documento', '=', $id)
+            ->get();
+
+        if(count($documento) <= 0){
+            abort(404);
+        }
+
+        $documento = $documento[0];
+
+        $hex = pack("H*", $documento->Contenuto);
+
+        $doc = preg_replace('/[^A-Za-z0-9ÄäÜüÖöß$ \/),.<è>\/ò@_à\n]/', ' ', $hex);
+        $doc = preg_replace('/[\n]/', '\n', $doc);
+//        bin2hex(file_get_contents($request->file('Contenuto')->getRealPath()))
+
+        return $doc;
+    }
+
     public function getDizionari(Request $request, $id){
         return DB::table('dizionario')
             ->join('dizionario_documento', 'dizionario_documento.id_dizionario', '=', 'dizionario.ID_dizionario')

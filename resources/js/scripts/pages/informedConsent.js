@@ -379,8 +379,8 @@ class InformedConsent {
                 });
                 $("#paragraphReactions" + paragraph.id).css({'margin':'10px 0px'});
                 $("#paragraphReactions" + paragraph.id).css({'padding':'5px'});
-                $("#paragraphReactions" + paragraph.id).append("<div class='col-4 text-center m-0 p-0'style='float:left'><input type=\"image\" class=\"reactionButton\" data-id=\"" + paragraph.id + "\" data-type=\"1\" src=\"assets/img/Fearful_Face_Emoji.png\"></div>");
-                $("#paragraphReactions" + paragraph.id).append("<div class='col-4 text-center m-0 p-0'style='float:left'><input type=\"image\" class=\"reactionButton\" data-id=\"" + paragraph.id + "\" data-type=\"2\" src=\"assets/img/Confused_Face_Emoji.png\"></div>");
+                $("#paragraphReactions" + paragraph.id).append("<div class='col-4 text-center m-0 p-0'style='float:left'><input type=\"image\" class=\"reactionButton\" data-id=\"" + paragraph.id + "\" data-type=\"1\" src=\""+ assetPath + "images/builder/Fearful_Face_Emoji.png\" style='width:20%;height:20%;'></div>");
+                $("#paragraphReactions" + paragraph.id).append("<div class='col-4 text-center m-0 p-0'style='float:left'><input type=\"image\" class=\"reactionButton\" data-id=\"" + paragraph.id + "\" data-type=\"2\" src=\""+ assetPath + "images/builder/Confused_Face_Emoji.png\"></div>");
                 $("#paragraphReactions" + paragraph.id).append("<div class='col-4 text-center m-0 p-0'style='float:left'><button id=\"undo" + paragraph.id + "\" class=\"btn btn-circle undo\" onclick=\"text.clearReaction(" + paragraph.id + ",  " + section_id + "); text.checkReactions()\" disabled><i class=\"fas fa-trash-alt fa-lg undo-trash\" aria-hidden=\"true\"></i></button></div>");
             } else {
                 $('.section[id="' + section.id + '-reactions"]').append("<div class=\"reactions\" id=\"paragraphReactions" + paragraph.id + "\"></div>");

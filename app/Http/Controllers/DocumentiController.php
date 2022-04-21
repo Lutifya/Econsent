@@ -126,11 +126,17 @@ class DocumentiController extends Controller
             ->insert([
                 'Nome_documento' => $request->file('Contenuto')->getClientOriginalName(),
                 'Data_inserimento' => now(),
-                'contenuto' => $hex,
+                'Contenuto' => $hex,
                 'Estensione' => $estensione
             ]);
         return redirect('/documenti');
 
+    }
+
+    private function file_get_contents_utf8($fn) {
+        $content = file_get_contents($fn);
+        return mb_convert_encoding($content, 'UTF-8',
+            mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true));
     }
 
     public function aggiungiNuovoDizionario(Request $request, $id)

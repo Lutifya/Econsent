@@ -7,6 +7,8 @@
 @endsection
 
 @section('page-style')
+    <link rel="stylesheet" href="{{asset('css/base/pages/app-builder.css')}}" >
+
     <style>
         .popover{
             max-width: 350px;
@@ -374,6 +376,8 @@
 
 @section('vendor-script')
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
+
 @endsection
 
 @section('page-script')
@@ -387,6 +391,8 @@
     const assetPath = $('body').attr('data-asset-path');
 
     const EstensioneDocumento = '{{$Estensione}}';
+    const idDoc = '{{$idDocumento}}';
+
     var text;
     var current_section = 1;
     let test;
