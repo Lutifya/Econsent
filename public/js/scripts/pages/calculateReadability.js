@@ -27,7 +27,8 @@ var wrd_DeMauro = [];
 this.costaCabitza = function(text) {
 
     var url = new URL(window.location.href);
-    var education = url.searchParams.get("education");
+    // var education = url.searchParams.get("education");
+    var education = parseInt(numEdu);
 
     var diffwrd_vocab, medwrd_vocab, periods_words;
 

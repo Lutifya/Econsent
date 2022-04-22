@@ -4,10 +4,12 @@
 
 @section('vendor-style')
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 @endsection
 
 @section('page-style')
     <link rel="stylesheet" href="{{asset('css/base/pages/app-builder.css')}}" >
+    <link rel="stylesheet" href="{{asset('css/base/pages/bootstrap-switch.css')}}" >
 
     <style>
         .popover{
@@ -376,7 +378,8 @@
 
 @section('vendor-script')
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" data-turbolinks-track="true"></script>--}}
+    <script type="text/javascript" src="{{asset(mix('js/scripts/pages/bootstrap-switch.js'))}}"></script>
 
 @endsection
 
@@ -392,6 +395,7 @@
 
     const EstensioneDocumento = '{{$Estensione}}';
     const idDoc = '{{$idDocumento}}';
+    const numEdu = '{{$numEdu}}';
 
     var text;
     var current_section = 1;

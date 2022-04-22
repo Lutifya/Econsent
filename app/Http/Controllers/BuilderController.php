@@ -25,7 +25,8 @@ class BuilderController extends Controller
         return view('content.pages.builder', [
             'documento' => $document[0],
             'idDocumento' => $id,
-            'Estensione' => $document[0]->Estensione
+            'Estensione' => $document[0]->Estensione,
+            'numEdu' => $education
         ]);
     }
 

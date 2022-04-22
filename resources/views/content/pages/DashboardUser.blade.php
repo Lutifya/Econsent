@@ -41,15 +41,15 @@
                         <label class="form-label" style="font-size: 15px">Qual è il livello di Istruzione di chi legge e compila il Consenso Informato? <span style="color: red;">*</span></label>
 
                         <div class="form-group form-control" style="margin-bottom:0;border:0px;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input form-controls" type="radio" id="scuola" name="education" value="0" data-enpassusermodified="yes" checked>
+                            <input class="form-check-input form-controls" type="radio" id="scuola" name="education" value="1" data-enpassusermodified="yes" checked>
                             <label class="form-label" for="scuola"> Scuola dell'obbligo</label>
                         </div>
                         <div class="form-group form-control" style="margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input" type="radio" id="diploma" name="education" value="1" data-enpassusermodified="yes">
+                            <input class="form-check-input" type="radio" id="diploma" name="education" value="2" data-enpassusermodified="yes">
                             <label class="form-label" for="diploma"> Diploma</label>
                         </div>
                         <div class="form-group form-control" style="margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input" type="radio" id="laurea" name="education" value="2" data-enpassusermodified="yes">
+                            <input class="form-check-input" type="radio" id="laurea" name="education" value="3" data-enpassusermodified="yes">
                             <label class="form-label" for="laurea"> Laurea</label>
                         </div>
                         <label class="form-label" for="cf" id="error_nome" style="display: none; color: red;">Inserire il Nome del Sito</label>

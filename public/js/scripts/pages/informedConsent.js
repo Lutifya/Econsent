@@ -17,12 +17,12 @@ class InformedConsent {
 
     // funzione che setta il valore di education
     setEducation(){
-        var num = new URL(window.location.href).searchParams.get("education");
-        if(num == 0)
+        // var num = new URL(window.location.href).searchParams.get("education");
+        if(numEdu === '1')
             this.education = "Scuola dell'obbligo";
-        if(num == 0.5)
+        if(numEdu === '2')
             this.education = "Diploma";
-        if(num == 1)
+        if(numEdu === '3')
             this.education = "Laurea";
     }
 
@@ -103,9 +103,9 @@ class InformedConsent {
         var headerHeight = $("#header").height();
         var briefingHeight = $("#briefing").height();
         var height = headerHeight + briefingHeight + 10;
-        $("#text-body").css({
-            "margin-top": (height + 'px')
-        })
+        // $("#text-body").css({
+        //     "margin-top": (height + 'px')
+        // })
     }
 
     // funzione che mostra una sezione alla volta
