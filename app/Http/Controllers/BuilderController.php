@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BuilderController extends Controller
@@ -55,5 +56,47 @@ class BuilderController extends Controller
             ->join('dizionario_documento', 'dizionario_documento.id_dizionario', '=', 'dizionario.ID_dizionario')
             ->where('dizionario_documento.id_documento', '=', $id)
             ->get();
+    }
+
+    public function saveDocument(Request $request, $id){
+        //check se ci sono tutti i dati
+
+        $moduloCompilato = isset($request->modulo) ? json_decode($request->modulo) : null;
+
+        if ($moduloCompilato === null) {
+            echo "Chiamata effettuata in modo non corretto";
+            exit();
+        }
+
+        $compilazioni = array();
+
+
+        $compilazioni['footer'] = $moduloCompilato->footer;
+        $compilazioni['id_user'] = Auth::user()->id;
+        $compilazioni['id_documento'] = $id;
+        $idCompilazione = DB::table('compilazioni')->insertGetId($compilazioni);
+
+        foreach ($moduloCompilato->title as $title) {
+            $array = [];
+            $array['titolo'] = $title;
+            $array['id_compilazione'] = $idCompilazione;
+            DB::table('titoli_documento')->insert($array);
+        }
+
+        foreach ($moduloCompilato->sections as $section) {
+            $temp = array();
+            $temp['title'] = $section->title;
+            $idParagrafo = DB::table('sections')->insertGetId($temp);
+
+            foreach ($section->paragraphs as $paragraph) {
+                $temp = array();
+                $temp['id_section'] = $idParagrafo;
+                $temp['id_compilazione'] = $idCompilazione;
+                $temp['testo'] = $paragraph->text;
+                DB::table('paragraph')->insert($temp);
+            }
+
+        }
+        echo json_encode(['idCompilazione' => $idCompilazione]);
     }
 }

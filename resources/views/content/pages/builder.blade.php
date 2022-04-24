@@ -225,7 +225,7 @@
             <!-- Questionario finale -->
             <div class="col-8 offset-2 text-center" id="final" hidden>
                 <div class="card">
-                    <h4 class="card-header progress-bar-striped" style="background-color: lightblue;">In base a quanto letto finora risponda alle seguenti domande
+                    <h4 class="card-header progress-bar-striped" style="background-color: #2d8f1a;color:white">In base a quanto letto finora risponda alle seguenti domande
                         <a tabindex='0' class="popoverMedico" data-toggle='popover' data-trigger='focus' data-placement='right' data-html="true" title="Come rispondere?" data-content="Seleziona il pallino che meglio esprime la tua posizione rispetto alle affermazioni proposte.<hr><span style='font-size: 14px;'>Se sei d'accordo con l'affermazione posta a sinistra seleziona un pallino tendente alla sinistra, al contrario se la tua opinione si avvicina di più all'affermazione di destra seleziona un pallino vicino a tale affermazione.</span>">
                             <i class="far fa-question-circle" aria-hidden="true"></a></i>
                     </h4>
@@ -282,15 +282,15 @@
 
                     </div>
 
-                    <div class="card-footer final-toolbar" style="background-color: lightblue">
-                        <h4>Acconsente ai termini del Consenso Informato ? <span style="color: red; font-size: 14px;">*</span></h4>
+                    <div class="card-footer final-toolbar" style="">
+                        <h4 style="">Acconsente ai termini del Consenso Informato ? <span style="color: red; font-size: 14px;">*</span></h4>
                         <form id="accept" align="center">
                             <input type="radio" id="agree" name="finalReactions">
-                            <label for="agree" id="agreeLabel"><h5>ACCONSENTO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                            <label for="agree" id="agreeLabel"><h5 >ACCONSENTO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
                             <input type="radio" id="disagree" name="finalReactions">
                             <label for="disagree"><h5>NON ACCONSENTO</h5></label>
                         </form>
-                        <span class="text-muted text-justify" style="font-size: 14px;">(Se sono state aggiunte delle reazioni a delle frasi la scelta sarà automaticamente NON ACCONSENTO, in modo che vengano chiariti tutti i passaggi del Consenso Informato prima di acconsentire.)</span>
+                        <span class="text-muted text-justify" style="font-size: 14px">(Se sono state aggiunte delle reazioni a delle frasi la scelta sarà automaticamente NON ACCONSENTO, in modo che vengano chiariti tutti i passaggi del Consenso Informato prima di acconsentire.)</span>
                         <form id="idFinalSubmit" align="center" style="margin-top: 1em;">
                             <input type="button" class="btn btn-success btn-md" id="finalSubmit" style="width: 100px" name="submit" value="Invia" disabled="disabled">
                         </form>
@@ -369,7 +369,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="finalSubmit()" style="width: 100px">Sì</button>
-                    <button type="button" class="btn btn-info" data-dismiss="modal" style="width: 100px">No</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" style="width: 100px;background-color: #afafaf!important">No</button>
                 </div>
             </div>
         </div>
@@ -623,7 +623,33 @@
         localStorage.setItem("array", JSON.stringify(textArr));
         var report = localStorage.getItem('json');  //INVIARE PER EMAIL
         var prova = localStorage.getItem('array');  //SALVARE NEL DB
-        $.redirect('response.php', {'jsonReport':report, 'prova':prova, 'reazione1':r1, 'reazione2':r2});
+
+        // console.log(prova);
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        jQuery.ajax({
+            url: assetPath + 'saveDocument/' +{{$idDocumento}},
+            method: 'POST',
+            async: true,
+            data: {
+                modulo: report,
+            },
+            success: function (result) {
+                let json = JSON.parse(result);
+                if (json !== null && json.idDocumento !== null) {
+                    window.location.href = "/";
+                }
+                // lines = result.split("\\n"); // Will separate each line into an array
+                // console.log(lines);
+                // return lines;
+            }
+        });
+        // $.redirect('response.php', {'jsonReport':report, 'prova':prova, 'reazione1':r1, 'reazione2':r2});
     }
 
     // hide popover/tooltip aperto quando c'è scroll della pagina

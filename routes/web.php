@@ -106,11 +106,12 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
         Route::get('getAllCompilazioni', [CompilazioniController::class, 'getALlCompilazioni']);
     });
 
+    Route::post('saveDocument/{id}', [BuilderController::class, 'saveDocument']);
+
     Route::group((['prefix' => 'Builder']), function () {
         Route::get('/getDizionari/{id}', [BuilderController::class, 'getDizionari']);
         Route::get('/getDoc/{id}', [BuilderController::class, 'getDoc']);
         Route::get('/{id}/{education}', [BuilderController::class, 'index'])->name('builder');
-
     });
 
     /* Route Apps */

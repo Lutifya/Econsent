@@ -10,6 +10,7 @@ class CompilazioniController extends Controller
 {
     public function getALlCompilazioni(Request $request)
     {
+//        columns[2][orderable
         $start = $request->get('start') !== null ? $request->get('start') : 0;
         $length = $request->get('length') !== null ? $request->get('length') : 50;
         $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
@@ -29,10 +30,16 @@ class CompilazioniController extends Controller
             })
             ->offset($start)
             ->limit($length)
+            ->orderBy('compilazioni.Data_compilazione','desc')
             ->get();
 
         $recordsTotal = count($dato);
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
+    }
+
+
+    public function displayPDF(Request $request, $id){
+
     }
 }
