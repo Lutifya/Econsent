@@ -104,9 +104,11 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
     Route::group((['prefix' => 'compilazioni']), function () {
         Route::get('/', [DocumentiController::class, 'index'])->name('documenti');
         Route::get('getAllCompilazioni', [CompilazioniController::class, 'getALlCompilazioni']);
+        Route::get('displayPDF/{id}', [CompilazioniController::class, 'displayPDF']);
     });
 
     Route::post('saveDocument/{id}', [BuilderController::class, 'saveDocument']);
+
 
     Route::group((['prefix' => 'Builder']), function () {
         Route::get('/getDizionari/{id}', [BuilderController::class, 'getDizionari']);

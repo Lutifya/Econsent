@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+include_once('PhpWord/TemplateProcessor.php');
+include_once('PhpWord/Settings.php');
+include_once('PhpWord/Shared/ZipArchive.php');
+
+use PhpWord\TemplateProcessor;
+
 class CompilazioniController extends Controller
 {
     public function getALlCompilazioni(Request $request)
@@ -39,7 +45,61 @@ class CompilazioniController extends Controller
     }
 
 
+    /**
+     * @throws \PhpWord\Exception\CopyFileException
+     * @throws \PhpWord\Exception\CreateTemporaryFileException
+     */
     public function displayPDF(Request $request, $id){
+        $file = './Document/Consenso Informato.docx';
+        $fileNew = './Document/Consenso InformatoNew.docx';
+        $phpword = new TemplateProcessor($file);
 
+        $blockName = $phpword->copyBlock('blockName');
+        $blockTitle = $phpword->copyBlock('blockTitle');
+
+        $resultCompilazione = DB::table('compilazioni')
+            ->where('ID_compilazione', '=', $id)
+            ->get()[0];
+
+        $titoliDocumento = DB::table('titoli_documento')
+            ->where('id_compilazione', '=', $id)
+            ->get();
+
+        foreach ($titoliDocumento as $titolo){
+            $phpword->pasteBlock('blockHeader', $blockTitle, true, ["title" => $titolo->titolo]);
+        }
+
+        $phpword->pasteBlock('blockHeader', $blockTitle, true, ["title" => $resultCompilazione->footer]);
+
+
+        $paragrafi = DB::table('paragraph')
+            ->where('id_compilazione', '=', $id)
+            ->get();
+
+        foreach($paragrafi as $paragrafo){
+            $testo = preg_replace('/(__|__$)/m', '', $paragrafo->testo);
+            $phpword->pasteBlock('blockMaster', $blockName, true, ["text" => $testo]);
+        }
+
+        $phpword->ripulisci('blockMaster');
+        $phpword->ripulisci('blockHeader');
+
+        $phpword->saveAs($fileNew);
+
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            //per windows
+            shell_exec('python ./Document/prova.py');
+        } else {
+            //per linux
+            shell_exec("unoconv -f pdf $fileNew");
+        }
+
+        $filePDF = './Document/Consenso InformatoNew.pdf';
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="Modulo di Consenso"');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . filesize($filePDF));
+        header('Accept-Ranges: bytes');
+        @readfile($filePDF);
     }
 }
