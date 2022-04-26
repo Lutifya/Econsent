@@ -96,7 +96,7 @@ class CompilazioniController extends Controller
 
         $filePDF = './Document/Consenso InformatoNew.pdf';
         header('Content-type: application/pdf');
-        header('Content-Disposition: inline; filename="Modulo di Consenso"');
+        header('Content-Disposition: inline; filename="Modulo di Consenso.pdf"');
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: ' . filesize($filePDF));
         header('Accept-Ranges: bytes');

@@ -10,7 +10,7 @@ $(function () {
             3: {title: 'Inattivo', class: 'badge-light-secondary'}
         };
     var assetPath = $('body').attr('data-asset-path'),
-        userView = assetPath + 'siti/info',
+        userView = assetPath + 'compilazioni/displayPDF',
         userEdit = assetPath + 'user/edit';
     if (dtUserTable.length) {
         dtUserTable.DataTable({
@@ -68,7 +68,7 @@ $(function () {
                             '<div class="d-flex flex-column">' +
                             '<a href="' +
                             userView +
-                            '/'+ full.id + '" class="user_name text-truncate"><span class="font-weight-bold">' +
+                            '/'+ full.ID_compilazione + '" class="user_name text-truncate" target="_blank"><span class="font-weight-bold">' +
                             $name +
                             '</span></a>' +
                             '<small class="emp_post text-muted">@' +
@@ -123,14 +123,14 @@ $(function () {
                             feather.icons['more-vertical'].toSvg({class: 'font-small-4'}) +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right">' +
-                            // '<a href="' +
-                            // userView +
-                            // '/' + full.id + '" class="dropdown-item">' +
-                            // feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
-                            // 'Informazioni</a>' +
                             '<a href="' +
-                            userEdit +
-                            '/' + full.id + '" class="dropdown-item">' +
+                            userView +
+                            '/' + full.ID_compilazione + '" class="dropdown-item" target="_blank">' +
+                            feather.icons['file-text'].toSvg({class: 'font-small-4 mr-50'}) +
+                            'Visualizza</a>' +
+                            '<a href="' +
+                            userView +
+                            '/' + full.ID_compilazione + '" data-id="'+ full.ID_compilazione +'" class="dropdown-item" download="compilazione_'+full.ID_compilazione+'.PDF">' +
                             feather.icons['download'].toSvg({class: 'font-small-4 mr-50'}) +
                             'Scarica</a>' +
                             // '<a href="javascript:;" data-id="' + full.id + '" class="dropdown-item delete-record">' +
@@ -210,7 +210,11 @@ $(function () {
     }
 
     $('.aggiungi-compilazioni').click(function(e){
-        e.preventDefault();
-        alert("prova");
-    })
+        e.preventDefault()
+        window.location.href = "/Builder/" + $('#sito').val() + "/" + $('input[name=education]:checked').val();
+    });
+
+    $('.download_compilazione').click(function(e){
+
+    });
 });
