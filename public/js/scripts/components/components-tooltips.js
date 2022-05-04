@@ -2,7 +2,7 @@
     File Name: tooltip.js
     Description: Tooltips are an updated version, which don’t rely on images, use CSS3 for animations, and data-attributes for local title storage.
     ----------------------------------------------------------------------------------------
-    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: Pixinvent
     Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

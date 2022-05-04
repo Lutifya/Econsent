@@ -21,46 +21,6 @@
 
 @section('content')
     <!-- Dashboard Ecommerce Starts -->
-    <div class="modal modal-slide-in new-user-modal fade" id="modals-slide-in">
-        <div class="modal-dialog">
-            <form class="add-new-user modal-content pt-0">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
-                <div class="modal-header mb-1">
-                    <h5 class="modal-title" id="exampleModalLabel">Compilazione Documento</h5>
-                </div>
-                <div class="modal-body flex-grow-1">
-                    <div class="form-group mb-2">
-                        <label class="form-label" for="user-plan" style="font-size: 15px">Seleziona Documento da compilare</label>
-                        <select id="sito" class="form-control">
-                            @foreach($documenti as $documento)
-                                <option value="{{$documento->ID_documento}}">{{$documento->Nome_documento}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" style="font-size: 15px">Qual è il livello di Istruzione di chi legge e compila il Consenso Informato? <span style="color: red;">*</span></label>
-
-                        <div class="form-group form-control" style="margin-bottom:0;border:0px;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input form-controls" type="radio" id="scuola" name="education" value="1" data-enpassusermodified="yes" checked>
-                            <label class="form-label" for="scuola"> Scuola dell'obbligo</label>
-                        </div>
-                        <div class="form-group form-control" style="margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input" type="radio" id="diploma" name="education" value="2" data-enpassusermodified="yes">
-                            <label class="form-label" for="diploma"> Diploma</label>
-                        </div>
-                        <div class="form-group form-control" style="margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
-                            <input class="form-check-input" type="radio" id="laurea" name="education" value="3" data-enpassusermodified="yes">
-                            <label class="form-label" for="laurea"> Laurea</label>
-                        </div>
-                        <label class="form-label" for="cf" id="error_nome" style="display: none; color: red;">Inserire il Nome del Sito</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary mr-1 aggiungi-compilazioni">Aggiungi</button>
-                    <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <section id="dashboard-ecommerce">
         <div class="row match-height">
             <!-- Company Table Card -->
@@ -96,93 +56,44 @@
                     <div class="card-body">
                         <div class="meetup-header d-flex align-items-center">
                             <div class="meetup-day">
-                                <h6 class="mb-0">THU</h6>
-                                <h3 class="mb-0">24</h3>
+                                <h6 class="mb-0">{{date('l')}}</h6>
+                                <h3 class="mb-0">{{date("d")}}</h3>
                             </div>
                             <div class="my-auto">
-                                <h4 class="card-title mb-25">Developer Meetup</h4>
-                                <p class="card-text mb-0">Meet world popular developers</p>
+                                <h4 class="card-title mb-25">Compilazione Documento</h4>
+{{--                                <p class="card-text mb-0">Meet world popular developers</p>--}}
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="avatar bg-light-primary rounded mr-1">
-                                <div class="avatar-content">
-                                    <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+
+                        <div>
+                            <div class="form-group mb-2">
+                                <label class="form-label" for="user-plan" style="font-size: 15px">Seleziona Documento da compilare</label>
+                                <select id="sito" class="form-control">
+                                    @foreach($documenti as $documento)
+                                        <option value="{{$documento->ID_documento}}">{{$documento->Nome_documento}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="font-size: 15px">Qual è il livello di Istruzione di chi legge e compila il Consenso Informato? <span style="color: red;">*</span></label>
+                                <div style="">
+                                    <div class="form-group form-control" style="display: table-cell!important;width:auto;margin-bottom:0;border:0px;height:50%;padding-top:0;padding-bottom:0">
+                                        <input class="form-check-input form-controls" type="radio" id="scuola" name="education" value="1" data-enpassusermodified="yes" checked>
+                                        <label class="form-label" for="scuola" style="font-size: 0.947rem"> Scuola dell'obbligo</label>
+                                    </div>
+                                    <div class="form-group form-control" style="display: table-cell!important;width:auto;margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
+                                        <input class="form-check-input" type="radio" id="diploma" name="education" value="2" data-enpassusermodified="yes">
+                                        <label class="form-label" for="diploma" style="font-size: 0.947rem"> Diploma</label>
+                                    </div>
+                                    <div class="form-group form-control" style="display: table-cell!important;width:auto;margin-bottom:0;border:0;height:50%;padding-top:0;padding-bottom:0">
+                                        <input class="form-check-input" type="radio" id="laurea" name="education" value="3" data-enpassusermodified="yes">
+                                        <label class="form-label" for="laurea" style="font-size: 0.947rem"> Laurea</label>
+                                    </div>
+                                    <label class="form-label" for="cf" id="error_nome" style="display: none; color: red;">Inserire il Nome del Sito</label>
                                 </div>
+
+                                <button type="submit" class="btn btn-primary mr-1 aggiungi-compilazioni">Aggiungi</button>
                             </div>
-                            <div class="media-body">
-                                <h6 class="mb-0">Sat, May 25, 2020</h6>
-                                <small>10:AM to 6:PM</small>
-                            </div>
-                        </div>
-                        <div class="media mt-2">
-                            <div class="avatar bg-light-primary rounded mr-1">
-                                <div class="avatar-content">
-                                    <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                <h6 class="mb-0">Central Park</h6>
-                                <small>Manhattan, New york City</small>
-                            </div>
-                        </div>
-                        <div class="avatar-group">
-                            <div
-                                    data-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-placement="bottom"
-                                    data-original-title="Billy Hopkins"
-                                    class="avatar pull-up"
-                            >
-                                <img src="{{asset('images/portrait/small/avatar-s-9.jpg')}}" alt="Avatar" width="33" height="33" />
-                            </div>
-                            <div
-                                    data-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-placement="bottom"
-                                    data-original-title="Amy Carson"
-                                    class="avatar pull-up"
-                            >
-                                <img src="{{asset('images/portrait/small/avatar-s-6.jpg')}}" alt="Avatar" width="33" height="33" />
-                            </div>
-                            <div
-                                    data-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-placement="bottom"
-                                    data-original-title="Brandon Miles"
-                                    class="avatar pull-up"
-                            >
-                                <img src="{{asset('images/portrait/small/avatar-s-8.jpg')}}" alt="Avatar" width="33" height="33" />
-                            </div>
-                            <div
-                                    data-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-placement="bottom"
-                                    data-original-title="Daisy Weber"
-                                    class="avatar pull-up"
-                            >
-                                <img
-                                        src="{{asset('images/portrait/small/avatar-s-20.jpg')}}"
-                                        alt="Avatar"
-                                        width="33"
-                                        height="33"
-                                />
-                            </div>
-                            <div
-                                    data-toggle="tooltip"
-                                    data-popup="tooltip-custom"
-                                    data-placement="bottom"
-                                    data-original-title="Jenny Looper"
-                                    class="avatar pull-up"
-                            >
-                                <img
-                                        src="{{asset('images/portrait/small/avatar-s-20.jpg')}}"
-                                        alt="Avatar"
-                                        width="33"
-                                        height="33"
-                                />
-                            </div>
-                            <h6 class="align-self-center cursor-pointer ml-50 mb-0">+42</h6>
                         </div>
                     </div>
                 </div>

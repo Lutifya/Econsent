@@ -2,7 +2,7 @@
 	File Name: form-number-input.js
 	Description: Number Input
 	----------------------------------------------------------------------------------------
-	Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

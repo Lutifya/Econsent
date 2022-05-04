@@ -25,7 +25,7 @@
                         class="form-control"
                         id="itemname"
                         aria-describedby="itemname"
-                        placeholder="Ecosent Admin Template"
+                        placeholder="Econsent Admin Template"
                       />
                     </div>
                   </div>

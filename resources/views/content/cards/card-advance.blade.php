@@ -718,7 +718,7 @@
                   <p>Absolutely!</p>
                 </div>
                 <div class="chat-content">
-                  <p>Ecosent admin is the responsive bootstrap 4 admin template.</p>
+                  <p>Econsent admin is the responsive bootstrap 4 admin template.</p>
                 </div>
               </div>
             </div>

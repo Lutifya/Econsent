@@ -2,7 +2,7 @@
     File Name: app-invoice-print.js
     Description: app-invoice-print Javascript
     ----------------------------------------------------------------------------------------
-    Item Name: Ecosent HTML Admin Template
+    Item Name: Econsent HTML Admin Template
    Version: 1.0
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent

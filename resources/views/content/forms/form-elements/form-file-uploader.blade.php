@@ -21,7 +21,7 @@
         <div class="alert-body">
           <strong>Info:</strong> Please check the
           <a
-            href="https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-extensions.html#file-uploader"
+            href="https://pixinvent.com/demo/Econsent-html-bootstrap-admin-template/documentation/documentation-extensions.html#file-uploader"
             target="_blank"
             class="text-primary"
             >DropzoneJS documentation</a

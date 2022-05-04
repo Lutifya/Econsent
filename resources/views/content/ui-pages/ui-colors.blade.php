@@ -21,7 +21,7 @@
             <div class="alert-body">
               For more color classes options please read the
               <a
-                href="https://pixinvent.com/demo/Ecosent-html-bootstrap-admin-template/documentation/documentation-colors.html"
+                href="https://pixinvent.com/demo/Econsent-html-bootstrap-admin-template/documentation/documentation-colors.html"
                 target="_blank"
                 class="alert-link"
                 >documentation.</a

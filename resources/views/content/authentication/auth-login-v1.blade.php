@@ -69,10 +69,10 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Ecosent</h2>
+          <h2 class="brand-text text-primary ml-1">Econsent</h2>
         </a>
 
-        <h4 class="card-title mb-1">Welcome to Ecosent! 👋</h4>
+        <h4 class="card-title mb-1">Welcome to Econsent! 👋</h4>
         <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
         <form class="auth-login-form mt-2" action="/" method="GET">

@@ -91,8 +91,8 @@ mix.then(() => {
 //   mix.version()
 //   mix.webpackConfig({
 //     output: {
-//       publicPath: '/demo/Ecosent-bootstrap-laravel-admin-template-new/demo-2/'
+//       publicPath: '/demo/Econsent-bootstrap-laravel-admin-template-new/demo-2/'
 //     }
 //   })
-//   mix.setResourceRoot('/demo/Ecosent-bootstrap-laravel-admin-template-new/demo-2/')
+//   mix.setResourceRoot('/demo/Econsent-bootstrap-laravel-admin-template-new/demo-2/')
 // }

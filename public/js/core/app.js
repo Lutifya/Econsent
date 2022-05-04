@@ -7,7 +7,7 @@ var __webpack_exports__ = {};
   File Name: app.js
   Description: Template related app JS.
   ----------------------------------------------------------------------------------------
-  Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

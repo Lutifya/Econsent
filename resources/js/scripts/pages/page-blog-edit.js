@@ -2,7 +2,7 @@
 	File Name: blog-edit.js
 	Description: Blog edit field select2 and quill editor JS
 	----------------------------------------------------------------------------------------
-	Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

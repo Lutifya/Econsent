@@ -168,6 +168,7 @@ $(function () {
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('btn-secondary');
+                        $(node).css('display', 'none');
                     }
                 }
             ],

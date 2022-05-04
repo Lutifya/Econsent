@@ -37,7 +37,7 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Ecosent</h2>
+          <h2 class="brand-text text-primary ml-1">Econsent</h2>
         </a>
         @if (session('error'))
           <div class="alert alert-danger">
@@ -51,7 +51,7 @@
           </div>
         @endif
 
-{{--        <h4 class="card-title mb-1">Welcome to Ecosent! 👋</h4>--}}
+{{--        <h4 class="card-title mb-1">Welcome to Econsent! 👋</h4>--}}
 
         <form class="auth-login-form mt-2" method="POST" action="{{ route('authenticate') }}">
           @csrf

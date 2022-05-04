@@ -110,8 +110,8 @@
 </section>
 <!-- Custom Radio Buttons end -->
 
-<!-- Ecosent Radio Buttons Color start -->
-<section class="Ecosent-radio-color">
+<!-- Econsent Radio Buttons Color start -->
+<section class="Econsent-radio-color">
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -184,5 +184,5 @@
     </div>
   </div>
 </section>
-<!-- Ecosent Radio Buttons Color end -->
+<!-- Econsent Radio Buttons Color end -->
 @endsection

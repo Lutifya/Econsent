@@ -2,7 +2,7 @@
     File Name: page-profile.js
     Description: User Profile jQuery Plugin Initialization
     --------------------------------------------------------------------------------------
-    Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+    Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

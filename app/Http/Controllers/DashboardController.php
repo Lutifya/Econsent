@@ -11,15 +11,17 @@ class DashboardController extends Controller
     public function dashboard(){
         $pageConfigs = ['pageHeader' => false];
 
-        $documenti = DB::table('documento')
-            ->join('documento_sito', 'documento.ID_documento', '=', 'documento_sito.id_documento')
-            ->join('sito', 'sito.id', '=', 'documento_sito.id_sito')
-            ->where('sito.Nome_sito', '=', Auth::user()->Sito_appartenenza)
-            ->where('documento_sito.Attivo', '=', '2')
-            ->get();
-
-        $view = view('/content/dashboard/dashboard-ecommerce', ['pageConfigs' => $pageConfigs]);
+        $view = view('/content/pages/DashboardAdmin', ['pageConfigs' => $pageConfigs]);
         if(Auth::user()->role === 'user'){
+
+            $documenti = DB::table('documento')
+                ->join('documento_sito', 'documento.ID_documento', '=', 'documento_sito.id_documento')
+                ->join('sito', 'sito.id', '=', 'documento_sito.id_sito')
+                ->where('sito.Nome_sito', '=', Auth::user()->Sito_appartenenza)
+                ->where('documento_sito.Attivo', '=', '2')
+                ->where('sito.Attivo', '=', '2')
+                ->get();
+
             $view = view('/content/pages/DashboardUser', [
                 'pageConfigs' => $pageConfigs,
                 'documenti' => $documenti,

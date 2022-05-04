@@ -2,7 +2,7 @@
 	File Name: ext-component-sliders.js
 	Description: noUiSlider is a lightweight JavaScript range slider library.
 	----------------------------------------------------------------------------------------
-	Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

@@ -2,7 +2,7 @@
 	File Name: form-quill-editor.js
 	Description: Quill is a modern rich text editor built for compatibility and extensibility.
 	----------------------------------------------------------------------------------------
-	Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+	Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/

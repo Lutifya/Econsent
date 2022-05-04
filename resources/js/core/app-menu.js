@@ -3,7 +3,7 @@
   Description: Menu navigation, custom scrollbar, hover scroll bar, multilevel menu
   initialization and manipulations
   ----------------------------------------------------------------------------------------
-  Item Name: Ecosent  - Vuejs, HTML & Laravel Admin Dashboard Template
+  Item Name: Econsent  - Vuejs, HTML & Laravel Admin Dashboard Template
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
