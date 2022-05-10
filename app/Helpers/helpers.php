@@ -10,6 +10,7 @@ class Helper
     public static function applClasses()
     {
         // Demo
+        $data = [];
         $fullURL = request()->fullurl();
         if (App()->environment() === 'production') {
             for ($i = 1; $i < 7; $i++) {
