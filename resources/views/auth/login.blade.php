@@ -84,7 +84,7 @@
           <div class="form-group">
             <div class="custom-control custom-checkbox">
               <input class="custom-control-input" type="checkbox" id="remember-me" name="remember-me" tabindex="3" {{ old('remember-me') ? 'checked' : '' }} />
-              <label class="custom-control-label" for="remember-me"> Ricordati quando riapri la pagina </label>
+              <label class="custom-control-label" for="remember-me"> Ricordami quando riapri la pagina </label>
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block" tabindex="4">Collegati</button>
