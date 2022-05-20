@@ -6,6 +6,10 @@
     {{-- Vendor Css files --}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap4.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap4.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap4.min.css')) }}">
 @endsection
 
 @section('page-style')
@@ -220,6 +224,27 @@
                     </div>
                     <!-- Information Tab ends -->
 
+                    <div class="">
+                        <div class="card card-company-table">
+                            <div class="card-header">
+                                <h4 class="card-title">Compilazioni effettuate da {{$user->name}}</h4>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="card-datatable table-responsive pt-0">
+                                    <table class="compilazioni-table table">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th></th>
+                                            <th>Nome Documento</th>
+                                            <th>Data Compilazione</th>
+                                            <th>Azioni</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,10 +257,21 @@
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+
+    <script src="{{ asset(mix('vendors/js/tables/datatable/jquery.dataTables.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.bootstrap4.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.responsive.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap4.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.bootstrap4.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
     {{-- Page js files --}}
+    <script>
+        var idUtente = {{$user->id}};
+    </script>
     <script src="{{ asset(mix('js/scripts/pages/app-user-edit.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/components/components-navs.js')) }}"></script>
 @endsection

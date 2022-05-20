@@ -26,8 +26,8 @@ class UserController extends Controller
                 'role',
                 'Sito_appartenenza as current_plan',
                 'Attivo as status'])
-            ->where('Sito_appartenenza','like', "%$searchValue%")
-            ->orWhere('email','like', "%$searchValue%")
+            ->where('Sito_appartenenza', 'like', "%$searchValue%")
+            ->orWhere('email', 'like', "%$searchValue%")
             ->offset($start)
             ->limit($length)
             ->get();
@@ -115,7 +115,7 @@ class UserController extends Controller
             ->where('email', '=', trim($request->email))
             ->get();
 
-        if(count($email) > 0){
+        if (count($email) > 0) {
             return "true";
         }
 
@@ -175,6 +175,36 @@ class UserController extends Controller
             'user' => $user[0],
             'siti' => $siti,
         ]);
+    }
+
+    public function getAllCompilazioniUser(Request $request, $id)
+    {
+//        columns[2][orderable
+        $start = $request->get('start') !== null ? $request->get('start') : 0;
+        $length = $request->get('length') !== null ? $request->get('length') : 50;
+        $searchValue = $request->get('search')['value'] !== '' ? $request->get('search')['value'] : '';
+
+        $dato = DB::table('compilazioni')
+            ->select([
+                'compilazioni.ID_compilazione',
+                'documento.Nome_documento as full_name',
+                DB::raw("'' as responsive_id"),
+                'compilazioni.Data_compilazione as username',
+            ])
+            ->join('documento', 'documento.ID_documento', '=', 'compilazioni.id_documento')
+            ->where('id_user', '=', $id)
+            ->where(function ($e) use ($searchValue) {
+                $e->where('documento.Nome_documento', 'like', "%$searchValue%");
+//                    ->orWhere('email', 'like', "%$searchValue%");
+            })
+            ->offset($start)
+            ->limit($length)
+            ->orderBy('compilazioni.Data_compilazione','desc')
+            ->get();
+
+        $recordsTotal = count($dato);
+
+        return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
 
     public function profile()

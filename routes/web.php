@@ -60,7 +60,7 @@ Route::middleware(['auth', 'checkBanned'])->group(function () {
             Route::post('saveInfo/{id}', [UserController::class, 'saveModify']);
             Route::post('addUser', [UserController::class, 'addUser']);
             Route::post('existEmail', [UserController::class, 'existEmail']);
-
+            Route::get('getAllCompilazioniUser/{id}', [UserController::class, 'getAllCompilazioniUser']);
         });
 
         Route::get('profile', [UserController::class, 'profile']);
