@@ -298,13 +298,13 @@ $(function () {
                         })
                     }
                 },
-                language: {
-                    paginate: {
-                        // remove previous & next text from pagination
-                        previous: '&nbsp;',
-                        next: '&nbsp;'
-                    }
-                },
+                // language: {
+                //     paginate: {
+                //         // remove previous & next text from pagination
+                //         previous: '&nbsp;',
+                //         next: '&nbsp;'
+                //     }
+                // },
                 initComplete: function () {
 
                 }
