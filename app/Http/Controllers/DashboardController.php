@@ -12,7 +12,7 @@ class DashboardController extends Controller
         $pageConfigs = ['pageHeader' => false];
 
         $view = view('/content/pages/DashboardAdmin', ['pageConfigs' => $pageConfigs]);
-        if(Auth::user()->role === 'user'){
+        if(Auth::user()->role === 'utente'){
 
             $documenti = DB::table('documento')
                 ->join('documento_sito', 'documento.ID_documento', '=', 'documento_sito.id_documento')
