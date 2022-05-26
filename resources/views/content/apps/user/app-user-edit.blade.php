@@ -227,7 +227,7 @@
                     <div class="">
                         <div class="card card-company-table">
                             <div class="card-header">
-                                <h4 class="card-title">Compilazioni effettuate da {{$user->name}}</h4>
+                                <h4 class="card-title">Compilazioni fatte fare da {{$user->name}}</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="card-datatable table-responsive pt-0">

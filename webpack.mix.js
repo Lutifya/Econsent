@@ -71,7 +71,7 @@ mix
   .js('resources/js/core/app-menu.js', 'public/js/core')
   .js('resources/js/core/app.js', 'public/js/core')
   .sass('resources/sass/core.scss', 'public/css', {sassOptions})
-  .sass('resources/sass/overrides.scss', 'public/css', {sassOptions})
+  .sass('resources/sass/overrides.scss', 6'public/css', {sassOptions})
   .sass('resources/sass/base/custom-rtl.scss', 'public/css', {sassOptions})
   .sass('resources/assets/scss/style-rtl.scss', 'public/css', {sassOptions})
   .sass('resources/assets/scss/style.scss', 'public/css', {sassOptions})
