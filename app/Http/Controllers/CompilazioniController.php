@@ -99,7 +99,7 @@ class CompilazioniController extends Controller
             shell_exec("python ./Document/prova.py $name");
         } else {
             //per linux
-            var_dump(shell_exec("unoconv -f pdf $fileNew"));
+            var_dump(shell_exec("unoconv -f pdf './Document/$name.docx'"));
 
         }
 
@@ -118,7 +118,7 @@ class CompilazioniController extends Controller
             unlink($fileNew);
             abort(404);
         }
-        
+
         unlink($filePDF);
         unlink($fileNew);
 
