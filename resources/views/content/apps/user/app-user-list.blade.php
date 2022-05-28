@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="user-role">Ruolo Utente</label>
                                 <select id="role" class="form-control">
-                                    <option value="user">User</option>
+                                    <option value="utente">Utente</option>
                                     <option value="admin">Admin</option>
                                 </select>
                             </div>
