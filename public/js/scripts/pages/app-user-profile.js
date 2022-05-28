@@ -77,7 +77,7 @@ $(function () {
                         });
 
                         jQuery.ajax({
-                            url: assetPath + 'user/saveInfo/'+ $('#id').val(),
+                            url: assetPath + 'user/saveProfile',
                             method: 'POST',
                             data: variabili,
                             success: function (result) {

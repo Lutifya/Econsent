@@ -96,7 +96,7 @@ $(function () {
                             Editor: feather.icons['edit-2'].toSvg({class: 'font-medium-3 text-info mr-50'}),
                             Admin: feather.icons['slack'].toSvg({class: 'font-medium-3 text-danger mr-50'}),
                             admin: feather.icons['slack'].toSvg({class: 'font-medium-3 text-danger mr-50'}),
-                            user: feather.icons['user'].toSvg({class: 'font-medium-3 text-primary mr-50'}),
+                            utente: feather.icons['user'].toSvg({class: 'font-medium-3 text-primary mr-50'}),
                         };
                         return "<span class='text-truncate align-middle'>" + roleBadgeObj[$role] + $role + '</span>';
                     }
