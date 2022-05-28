@@ -113,7 +113,12 @@ class CompilazioniController extends Controller
             header('Accept-Ranges: bytes');
             @readfile($filePDF);
         }
-
+        else{
+            unlink($filePDF);
+            unlink($fileNew);
+            abort(404);
+        }
+        
         unlink($filePDF);
         unlink($fileNew);
 
