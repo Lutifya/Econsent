@@ -54,7 +54,7 @@ class CompilazioniController extends Controller
     {
         $code = sha1($id . time());
 //        $name = 'Consenso Informato_'.$code;
-        $name = $code;
+        $name = 'prova';
 
         $file = './Document/Consenso Informato.docx';
 
@@ -99,8 +99,7 @@ class CompilazioniController extends Controller
             shell_exec("python ./Document/prova.py $name");
         } else {
             //per linux
-            var_dump(shell_exec("unoconv -f pdf './Document/$name.docx'"));
-
+            shell_exec("unoconv -f pdf '$fileNew'");
         }
 
 
