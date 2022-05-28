@@ -98,8 +98,10 @@ class CompilazioniController extends Controller
             shell_exec("python ./Document/prova.py $name");
         } else {
             //per linux
-            shell_exec("unoconv -f pdf $fileNew");
-            shell_exec("mkdir prova");
+            $out =  "";
+            shell_exec("unoconv -f pdf $fileNew", $out);
+            var_dump($out);
+
         }
 
 
