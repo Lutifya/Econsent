@@ -99,6 +99,7 @@ class CompilazioniController extends Controller
         } else {
             //per linux
             shell_exec("unoconv -f pdf $fileNew");
+            shell_exec("mkdir prova");
         }
 
 
