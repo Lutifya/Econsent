@@ -10,6 +10,7 @@ include_once('PhpWord/TemplateProcessor.php');
 include_once('PhpWord/Settings.php');
 include_once('PhpWord/Shared/ZipArchive.php');
 
+use League\Flysystem\Exception;
 use PhpWord\TemplateProcessor;
 
 class CompilazioniController extends Controller
@@ -102,15 +103,22 @@ class CompilazioniController extends Controller
 
 
         $filePDF = "./Document/$name.pdf";
-        header('Content-type: application/pdf');
-        header('Content-Disposition: inline; filename="Modulo di Consenso.pdf"');
-        header('Content-Transfer-Encoding: binary');
-        header('Content-Length: ' . filesize($filePDF));
-        header('Accept-Ranges: bytes');
-        @readfile($filePDF);
+        try{
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="Modulo di Consenso.pdf"');
+            header('Content-Transfer-Encoding: binary');
+            header('Content-Length: ' . filesize($filePDF));
+            header('Accept-Ranges: bytes');
+            @readfile($filePDF);
 
-        //Ripulire i file
-        unlink($filePDF);
-        unlink($fileNew);
+            unlink($filePDF);
+            unlink($fileNew);
+
+        }catch (Exception $exception){
+            //Ripulire i file
+            unlink($fileNew);
+        }
+
+
     }
 }
