@@ -1,5 +1,10 @@
 from docx2pdf import convert
+import sys
 
-convert("./Document/Consenso InformatoNew.docx")
+# el = str(sys.argv)
+convert("./Document/" + sys.argv[1] + ".docx")
+
+
+
 # convert("input.docx", "output.pdf")
 # convert("./")

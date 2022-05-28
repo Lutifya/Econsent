@@ -50,8 +50,14 @@ class CompilazioniController extends Controller
      * @throws \PhpWord\Exception\CreateTemporaryFileException
      */
     public function displayPDF(Request $request, $id){
+        $code = sha1($id . time());
+//        $name = 'Consenso Informato_'.$code;
+        $name = $code;
+
         $file = './Document/Consenso Informato.docx';
-        $fileNew = './Document/Consenso InformatoNew.docx';
+
+//        $fileNew = "./Document/Consenso Informato_$name.docx";
+        $fileNew = "./Document/$name.docx";
         $phpword = new TemplateProcessor($file);
 
         $blockName = $phpword->copyBlock('blockName');
@@ -88,18 +94,23 @@ class CompilazioniController extends Controller
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             //per windows
-            shell_exec('python ./Document/prova.py');
+            shell_exec("python ./Document/prova.py $name");
         } else {
             //per linux
             shell_exec("unoconv -f pdf $fileNew");
         }
 
-        $filePDF = './Document/Consenso InformatoNew.pdf';
+
+        $filePDF = "./Document/$name.pdf";
         header('Content-type: application/pdf');
         header('Content-Disposition: inline; filename="Modulo di Consenso.pdf"');
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: ' . filesize($filePDF));
         header('Accept-Ranges: bytes');
         @readfile($filePDF);
+
+        //Ripulire i file
+        unlink($filePDF);
+        unlink($fileNew);
     }
 }
