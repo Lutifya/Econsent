@@ -37,7 +37,7 @@ class CompilazioniController extends Controller
             })
             ->offset($start)
             ->limit($length)
-            ->orderBy('compilazioni.Data_compilazione','desc')
+            ->orderBy('compilazioni.Data_compilazione', 'desc')
             ->get();
 
         $recordsTotal = count($dato);
@@ -50,7 +50,8 @@ class CompilazioniController extends Controller
      * @throws \PhpWord\Exception\CopyFileException
      * @throws \PhpWord\Exception\CreateTemporaryFileException
      */
-    public function displayPDF(Request $request, $id){
+    public function displayPDF(Request $request, $id)
+    {
         $code = sha1($id . time());
 //        $name = 'Consenso Informato_'.$code;
         $name = $code;
@@ -72,7 +73,7 @@ class CompilazioniController extends Controller
             ->where('id_compilazione', '=', $id)
             ->get();
 
-        foreach ($titoliDocumento as $titolo){
+        foreach ($titoliDocumento as $titolo) {
             $phpword->pasteBlock('blockHeader', $blockTitle, true, ["title" => $titolo->titolo]);
         }
 
@@ -83,7 +84,7 @@ class CompilazioniController extends Controller
             ->where('id_compilazione', '=', $id)
             ->get();
 
-        foreach($paragrafi as $paragrafo){
+        foreach ($paragrafi as $paragrafo) {
             $testo = preg_replace('/(__|__$)/m', '', $paragrafo->testo);
             $phpword->pasteBlock('blockMaster', $blockName, true, ["text" => $testo]);
         }
@@ -104,22 +105,17 @@ class CompilazioniController extends Controller
 
 
         $filePDF = "./Document/$name.pdf";
-        try{
+        if (file_exists($filePDF)){
             header('Content-type: application/pdf');
             header('Content-Disposition: inline; filename="Modulo di Consenso.pdf"');
             header('Content-Transfer-Encoding: binary');
             header('Content-Length: ' . filesize($filePDF));
             header('Accept-Ranges: bytes');
             @readfile($filePDF);
-
-            unlink($filePDF);
-            unlink($fileNew);
-
-        }catch (Exception $exception){
-            //Ripulire i file
-            unlink($fileNew);
         }
 
+        unlink($filePDF);
+        unlink($fileNew);
 
     }
 }
