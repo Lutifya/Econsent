@@ -360,7 +360,7 @@
                 <div class="modal-body text-justify pl-5 pr-5">
                     <div class="row">
                         <div class="col-2 pl-0">
-                            <img src="{{asset('images/builder/doctor.PNG')}}" height="90px">
+                            <img src="{{asset('images/builder/doctor.png')}}" height="90px">
                         </div>
                         <div class="col-10 pt-2">
                             <span id="patientChoice"></span>
