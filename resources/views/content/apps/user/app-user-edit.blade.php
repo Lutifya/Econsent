@@ -133,7 +133,7 @@
                                         <select class="form-control" id="role">
                                             <option value="admin" {{$user->role === 'admin' ? 'selected' : ''}}>Admin
                                             </option>
-                                            <option value="utente" {{$user->role === 'utente' ? 'selected' : ''}}>User
+                                            <option value="utente" {{$user->role === 'utente' ? 'selected' : ''}}>Utente
                                             </option>
                                         </select>
                                     </div>
