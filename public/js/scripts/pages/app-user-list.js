@@ -362,7 +362,7 @@ $(function () {
             error_email.css('display', 'none');
         }
 
-        if(!variabili.username.length > 0){
+        if(!(variabili.username.length > 0)){
             isValid = false;
             username.addClass('errore_validazione');
             error_username.css('display', 'block');

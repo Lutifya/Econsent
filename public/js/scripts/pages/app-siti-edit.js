@@ -132,8 +132,8 @@ $(function () {
                             '</div>' +
                             '<div class="d-flex flex-column">' +
                             '<a href="' +
-                            userView +
-                            '/'+ full.id + '" class="user_name text-truncate"><span class="font-weight-bold">' +
+                            userEdit +
+                            '/' + full.ID_documento + '" class="user_name text-truncate"><span class="font-weight-bold">' +
                             $name +
                             '</span></a>' +
                             '<small class="emp_post text-muted">@' +
@@ -245,13 +245,7 @@ $(function () {
                     })
                 }
             },
-            // language: {
-            //     paginate: {
-            //         // remove previous & next text from pagination
-            //         previous: '&nbsp;',
-            //         next: '&nbsp;'
-            //     }
-            // }
+            // language:
         });
     }
 
