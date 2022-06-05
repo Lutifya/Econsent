@@ -63,7 +63,8 @@ class DocumentiController extends Controller
             ->limit($length)
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = $recordsTotal = DB::table('documento')
+            ->count('*');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
@@ -239,7 +240,9 @@ class DocumentiController extends Controller
             ->limit($length)
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('dizionario_documento')
+            ->join('dizionario', 'dizionario.ID_dizionario', '=', 'dizionario_documento.id_dizionario')
+            ->count('*');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
 

@@ -32,7 +32,8 @@ class UserController extends Controller
             ->limit($length)
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('users')
+            ->count('id');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
@@ -137,7 +138,7 @@ class UserController extends Controller
         $email = trim($request->get("email"));
         $CF = trim($request->get("CF"));
 
-        if (!$this->checkEmail($email) || strlen($username) < 5 || strlen($CF) > 16 || strlen($CF) < 16) {
+        if (!$this->checkEmail($email) || strlen($username) < 2 || strlen($CF) > 16 || strlen($CF) < 16) {
             return "errore nei campi di validazione";
         }
 
@@ -202,7 +203,9 @@ class UserController extends Controller
             ->orderBy('compilazioni.Data_compilazione','desc')
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('compilazioni')
+            ->join('documento', 'documento.ID_documento', '=', 'compilazioni.id_documento')
+            ->count('*');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }

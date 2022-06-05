@@ -66,7 +66,8 @@ class SitiController extends Controller
             ->limit($length)
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('sito')
+            ->count('id');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
@@ -244,7 +245,9 @@ class SitiController extends Controller
             ->limit($length)
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('documento_sito')
+            ->join('documento', 'documento.ID_documento', 'documento_sito.id_documento')
+            ->count('*');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
 

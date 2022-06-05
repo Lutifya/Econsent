@@ -40,7 +40,9 @@ class CompilazioniController extends Controller
             ->orderBy('compilazioni.Data_compilazione', 'desc')
             ->get();
 
-        $recordsTotal = count($dato);
+        $recordsTotal = DB::table('compilazioni')
+            ->join('documento', 'documento.ID_documento', '=', 'compilazioni.id_documento')
+            ->count('*');
 
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
