@@ -38,7 +38,7 @@ class UserController extends Controller
         return ["data" => $dato, 'recordsTotal' => $recordsTotal, 'recordsFiltered' => $recordsTotal];
     }
 
-    public function changeState(Request $request, $id)
+    public function changeState(Request $request, int $id)
     {
         if($id === Auth::user()->id){
             return "notAutoBan";
