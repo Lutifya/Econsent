@@ -216,7 +216,7 @@ $(function () {
         '<"col-sm-12 col-md-6"p>' +
         '>',
       language: {
-        sLengthMenu: 'Show _MENU_',
+        sLengthMenu: 'Mostra _MENU_',
         search: 'Search',
         searchPlaceholder: 'Search Invoice',
         paginate: {

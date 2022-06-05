@@ -40,6 +40,10 @@ class UserController extends Controller
 
     public function changeState(Request $request, $id)
     {
+        if($id === Auth::user()->id){
+            return "notAutoBan";
+        }
+
         $obj = DB::table('users')
             ->where('id', '=', $id);
 

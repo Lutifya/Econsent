@@ -200,7 +200,7 @@ $(function () {
             language: {
                 sLengthMenu: 'Mostra _MENU_',
                 search: 'Search',
-                searchPlaceholder: 'Search..'
+                searchPlaceholder: 'Ricerca..'
             },
             // Buttons with Dropdown
             buttons: [

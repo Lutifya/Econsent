@@ -160,7 +160,7 @@ $(function () {
             language: {
                 sLengthMenu: 'Mostra _MENU_',
                 search: 'Search',
-                searchPlaceholder: 'Search..'
+                searchPlaceholder: 'Ricerca..'
             },
             // Buttons with Dropdown
             buttons: [
@@ -444,6 +444,9 @@ $(function () {
             success: function (result) {
                 if(result === "okay"){
                     location.reload();
+                }
+                if(result === "notAutoBan"){
+                    alert('Non puoi bannare te stesso');
                 }
             }
         });
