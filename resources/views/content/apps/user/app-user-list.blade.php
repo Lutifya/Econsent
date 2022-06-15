@@ -25,14 +25,14 @@
     <!-- users list start -->
     <section class="app-user-list">
         <!-- users filter start -->
-        <div class="card">
-            <h5 class="card-header">Ricerca per Filtri</h5>
-            <div class="d-flex justify-content-between align-items-center mx-50 row pt-0 pb-2">
-                <div class="col-md-4 user_role"></div>
-                <div class="col-md-4 user_plan"></div>
-                <div class="col-md-4 user_status"></div>
-            </div>
-        </div>
+{{--        <div class="card">--}}
+{{--            <h5 class="card-header">Ricerca per Filtri</h5>--}}
+{{--            <div class="d-flex justify-content-between align-items-center mx-50 row pt-0 pb-2">--}}
+{{--                <div class="col-md-4 user_role"></div>--}}
+{{--                <div class="col-md-4 user_plan"></div>--}}
+{{--                <div class="col-md-4 user_status"></div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- users filter end -->
         <!-- list section start -->
         <div class="card">
