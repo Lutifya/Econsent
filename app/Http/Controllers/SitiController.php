@@ -146,6 +146,11 @@ class SitiController extends Controller
         return redirect('/siti/info/'.$id);
     }
 
+    public function test(Request $request)
+    {
+        return view('content.pages.test');
+    }
+
     public function changeStateDocument(Request $request, $idSito)
     {
         $obj = DB::table('documento_sito')

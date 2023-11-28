@@ -46,6 +46,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
 
+Route::get('test', [SitiController::class, 'test']);
+
 Route::middleware(['auth', 'checkBanned'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');

@@ -12411,7 +12411,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .navbar-floating .header-navbar-shadow {
   display: block;
-  background: linear-gradient(180deg, rgba(248, 248, 248, 0.95) 44%, rgba(248, 248, 248, 0.46) 73%, rgba(255, 255, 255, 0));
+  background: linear-gradient(180deg, hsla(0deg, 0%, 97.3%, 0.95) 44%, hsla(0deg, 0%, 97.3%, 0.46) 73%, hsla(0deg, 0%, 100%, 0));
   padding-top: 2.2rem;
   background-repeat: repeat;
   width: 100%;
@@ -20372,10 +20372,10 @@ footer.footer-border {
   pointer-events: none;
   margin-top: -0.7rem;
   filter: blur(5px);
-  background: linear-gradient(#fff 41%, rgba(255, 255, 255, 0.11) 95%, rgba(255, 255, 255, 0));
+  background: linear-gradient(#fff 41%, hsla(0deg, 0%, 100%, 0.11) 95%, hsla(0deg, 0%, 100%, 0));
 }
 .bordered-layout .main-menu .shadow-bottom {
-  background: linear-gradient(#f8f8f8 41%, rgba(255, 255, 255, 0.11) 95%, rgba(255, 255, 255, 0));
+  background: linear-gradient(#f8f8f8 41%, hsla(0deg, 0%, 100%, 0.11) 95%, hsla(0deg, 0%, 100%, 0));
 }
 .main-menu.menu-native-scroll .main-menu-content {
   overflow-y: scroll !important;
